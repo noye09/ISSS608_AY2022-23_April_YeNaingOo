@@ -1,11 +1,9 @@
 ---
-title: "ISSS608_AY2022-23_April_YeNaingOo"
+title: "ISSS608 AY2022-23 April Term_Ye Naing Oo"
 ---
 
-This is a Quarto website.
+Welcome to my Quarto page!\n
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+I'm currently developing this page as part of my postgraduate studies for a Master of IT in Business at the SMU School of Information Systems. The purpose of this site is to showcase my visual analytics works, so please feel free to explore and let me know if you have any feedback or questions. Thank you for visiting!
 
-```{r}
-1 + 1
-```
+![In God we trust, all others bring data.](data-analysis.gif)

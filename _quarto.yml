@@ -1,20 +1,49 @@
+
 project:
   type: website
 
 website:
-  title: "ISSS608_AY2022-23_April_YeNaingOo"
+  title: "ISSS608 Ye Naing Oo"
   navbar:
+    background: primary
+    search: true
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
-      - href: Inclass_ex04.qmd
-        text: Inclass_ex04
+      - text: "Home"
+        file: index.qmd
+      - text: "In Class Exercises"
+        file: Inclass_ex04.qmd
+      - text: "Take Home Exercises"
+        file: Take-home-Exercise_1.qmd
+      - text: "Visual Analytics Project"
+        file: index.qmd
+
+  sidebar:
+    - title: "In Class Exercises"
+      style: "docked"
+      background: light
+      tools:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/naingoo-ye/
+      - icon: github
+        href: https://github.com/noye09    
+      contents:
+        - Inclass_ex04.qmd
+        - tutorial-1.qmd
+        - tutorial-2.qmd
+        
+    - title: "Take Home Exercises"
+      contents:
+        - Take-home-Exercise_1.qmd
+        # navigation items
+        
+
+
 
 format:
   html:
-    theme: cosmo
+    theme: Flatly
     css: styles.css
     toc: true
 
 editor: visual
+    

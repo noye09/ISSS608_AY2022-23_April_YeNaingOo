@@ -11,7 +11,7 @@ execute:
 ---
 
 ```{r}
-pacman::p_load(rstatix, gt, oatchwor, tidyverse)
+pacman::p_load(rstatix, gt, patchwork, tidyverse)
 
 ```
 
@@ -70,11 +70,28 @@ tmp <- tempfile(fileext = '.png')
 gtsave(sw_t,tmp)
 table_png <- png::readPNG(tmp,native = TRUE)
 
-##qq + table_png
+qq + table_png
 ```
 
 ## The code chunk
 ```{r}
+#| eval: false
+#| fig-width: 4
+#| fig-height: 4
+qq <- ggplot(exam_data,
+       aes(sample=ENGLISH)) +
+  stat_qq() +
+  stat_qq_line()
 
+sw_t <- exam_data %>%
+  shapiro_test(ENGLISH) %>%
+  gt()
+
+tmp <- tempfile(fileext = '.png')
+gtsave(sw_t,tmp)
+table_png <- png::readPNG(tmp,native = TRUE)
+
+qq + table_png
 ```
 :::
+
