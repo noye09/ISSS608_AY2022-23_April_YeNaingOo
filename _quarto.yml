@@ -8,6 +8,8 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+      - href: Inclass_ex04.qmd
+        text: Inclass_ex04
 
 format:
   html:
@@ -16,4 +18,3 @@ format:
     toc: true
 
 editor: visual
-

@@ -1,0 +1,80 @@
+---
+title: "Inclass_ex04"
+author: "Ye Naing Oo"
+date: "06 May 2023"
+date-modified: "'r Sys.Date()'"
+
+execute: 
+  echo: true
+  eval: true
+  warning: false
+---
+
+```{r}
+pacman::p_load(rstatix, gt, oatchwor, tidyverse)
+
+```
+
+```{r}
+exam_data <- read.csv("Hands-on_Ex04/data/Exam_data.csv")
+
+```
+
+::: panel-tabset
+
+## The plot
+```{r}
+#| echo: false
+#| fig-width: 4
+#| fig-height: 4
+ggplot(exam_data,
+       aes(sample=ENGLISH)) +
+  stat_qq() +
+  stat_qq_line()
+```
+
+## The code chunk
+```{r}
+#| eval: false
+#| fig-width: 4
+#| fig-height: 4
+ggplot(exam_data,
+       aes(sample=ENGLISH)) +
+  stat_qq() +
+  stat_qq_line()
+```
+:::
+
+::: callout-note
+Note: some note here
+:::
+
+
+::: panel-tabset
+
+## The plot
+```{r}
+#| echo: false
+#| fig-width: 4
+#| fig-height: 4
+qq <- ggplot(exam_data,
+       aes(sample=ENGLISH)) +
+  stat_qq() +
+  stat_qq_line()
+
+sw_t <- exam_data %>%
+  shapiro_test(ENGLISH) %>%
+  gt()
+
+tmp <- tempfile(fileext = '.png')
+gtsave(sw_t,tmp)
+table_png <- png::readPNG(tmp,native = TRUE)
+
+##qq + table_png
+```
+
+## The code chunk
+```{r}
+
+```
+:::

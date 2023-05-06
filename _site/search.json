@@ -7,10 +7,31 @@
     "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
+    "objectID": "Inclass_ex04.html",
+    "href": "Inclass_ex04.html",
+    "title": "Inclass_ex04",
+    "section": "",
+    "text": "pacman::p_load(rstatix, gt, oatchwor, tidyverse)\n\n\nexam_data <- read.csv(\"Hands-on_Ex04/data/Exam_data.csv\")\n\n\nThe plotThe code chunk\n\n\n\n\n\n\n\n\n\n\nggplot(exam_data,\n       aes(sample=ENGLISH)) +\n  stat_qq() +\n  stat_qq_line()\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nNote: some note here\n\n\n\nThe plotThe code chunk"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "ISSS608_AY2022-23_April_YeNaingOo",
     "section": "",
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "Inclass_ex04.html#the-code-chunk",
+    "href": "Inclass_ex04.html#the-code-chunk",
+    "title": "Inclass_ex04",
+    "section": "The code chunk",
+    "text": "The code chunk\n\nggplot(exam_data,\n       aes(sample=ENGLISH)) +\n  stat_qq() +\n  stat_qq_line()"
+  },
+  {
+    "objectID": "Inclass_ex04.html#the-plot",
+    "href": "Inclass_ex04.html#the-plot",
+    "title": "Inclass_ex04",
+    "section": "The plot",
+    "text": "The plot"
   }
 ]
