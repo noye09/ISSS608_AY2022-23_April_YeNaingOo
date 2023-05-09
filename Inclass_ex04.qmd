@@ -21,8 +21,8 @@ exam_data <- read.csv("Hands-on_Ex04/data/Exam_data.csv")
 ```
 
 ::: panel-tabset
-
 ## The plot
+
 ```{r}
 #| echo: false
 #| fig-width: 4
@@ -34,6 +34,7 @@ ggplot(exam_data,
 ```
 
 ## The code chunk
+
 ```{r}
 #| eval: false
 #| fig-width: 4
@@ -49,10 +50,9 @@ ggplot(exam_data,
 Note: some note here
 :::
 
-
 ::: panel-tabset
-
 ## The plot
+
 ```{r}
 #| echo: false
 #| fig-width: 4
@@ -74,6 +74,7 @@ qq + table_png
 ```
 
 ## The code chunk
+
 ```{r}
 #| eval: false
 #| fig-width: 4
@@ -94,4 +95,3 @@ table_png <- png::readPNG(tmp,native = TRUE)
 qq + table_png
 ```
 :::
-

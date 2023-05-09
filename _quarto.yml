@@ -17,6 +17,7 @@ website:
       - text: "Visual Analytics Project"
         file: index.qmd
 
+  
   sidebar:
     - title: "In Class Exercises"
       style: "docked"
@@ -36,7 +37,7 @@ website:
         - Take-home-Exercise_1.qmd
         # navigation items
         
-
+  
 
 
 format:
@@ -44,6 +45,8 @@ format:
     theme: Flatly
     css: styles.css
     toc: true
-
+    code-fold: true
+    code-summary: "Show the code"
+    navbar: true
 editor: visual
     

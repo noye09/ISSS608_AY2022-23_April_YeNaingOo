@@ -1,5 +1,5 @@
 ---
-title: "ISSS608 AY2022-23 April Termus_Ye Naing Oo"
+title: "ISSS608 AY2022-23 April Term_Ye Naing Oo"
 ---
 
 Welcome to my Quarto page!\n

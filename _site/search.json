@@ -11,13 +11,34 @@
     "href": "Inclass_ex04.html",
     "title": "Inclass_ex04",
     "section": "",
-    "text": "pacman::p_load(rstatix, gt, patchwork, tidyverse)\n\n\nexam_data <- read.csv(\"Hands-on_Ex04/data/Exam_data.csv\")\n\n\nThe plotThe code chunk\n\n\n\n\n\n\n\n\n\n\nggplot(exam_data,\n       aes(sample=ENGLISH)) +\n  stat_qq() +\n  stat_qq_line()\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nNote: some note here\n\n\n\nThe plotThe code chunk\n\n\n\n\n\n\n\n\n\n\nqq <- ggplot(exam_data,\n       aes(sample=ENGLISH)) +\n  stat_qq() +\n  stat_qq_line()\n\nsw_t <- exam_data %>%\n  shapiro_test(ENGLISH) %>%\n  gt()\n\ntmp <- tempfile(fileext = '.png')\ngtsave(sw_t,tmp)\ntable_png <- png::readPNG(tmp,native = TRUE)\n\nqq + table_png"
+    "text": "Show the code\npacman::p_load(rstatix, gt, patchwork, tidyverse)\n\n\n\n\nShow the code\nexam_data <- read.csv(\"Hands-on_Ex04/data/Exam_data.csv\")\n\n\n\nThe plotThe code chunk\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nggplot(exam_data,\n       aes(sample=ENGLISH)) +\n  stat_qq() +\n  stat_qq_line()\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nNote: some note here\n\n\n\nThe plotThe code chunk\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nqq <- ggplot(exam_data,\n       aes(sample=ENGLISH)) +\n  stat_qq() +\n  stat_qq_line()\n\nsw_t <- exam_data %>%\n  shapiro_test(ENGLISH) %>%\n  gt()\n\ntmp <- tempfile(fileext = '.png')\ngtsave(sw_t,tmp)\ntable_png <- png::readPNG(tmp,native = TRUE)\n\nqq + table_png"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "ISSS608 AY2022-23 April Termus_Ye Naing Oo",
+    "title": "ISSS608 AY2022-23 April Term_Ye Naing Oo",
     "section": "",
     "text": "Welcome to my Quarto page!\nI’m currently developing this page as part of my postgraduate studies for a Master of IT in Business at the SMU School of Information Systems. The purpose of this site is to showcase my visual analytics works, so please feel free to explore and let me know if you have any feedback or questions. Thank you for visiting!\n\n\n\nIn God we trust, all others bring data."
+  },
+  {
+    "objectID": "Take-home-Exercise_1.html",
+    "href": "Take-home-Exercise_1.html",
+    "title": "Take-home-Exercise_1",
+    "section": "",
+    "text": "pacman::p_load(rstatix, gt, patchwork, tidyverse)\n\nfinancial<- read_csv(\"data/FinancialJournal.csv\",show_col_types = FALSE)\nglimpse(financial,width=NULL)\n\nRows: 1,513,636\nColumns: 4\n$ participantId <dbl> 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6,…\n$ timestamp     <dttm> 2022-03-01, 2022-03-01, 2022-03-01, 2022-03-01, 2022-03…\n$ category      <chr> \"Wage\", \"Shelter\", \"Education\", \"Wage\", \"Shelter\", \"Educ…\n$ amount        <dbl> 2472.50756, -554.98862, -38.00538, 2046.56221, -554.9886…\n\n\n\nparticipants <- read_csv(\"data/Participants.csv\",show_col_types = FALSE)\nglimpse(participants,width=NULL)\n\nRows: 1,011\nColumns: 7\n$ participantId  <dbl> 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1…\n$ householdSize  <dbl> 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3…\n$ haveKids       <lgl> TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, T…\n$ age            <dbl> 36, 25, 35, 21, 43, 32, 26, 27, 20, 35, 48, 27, 34, 18,…\n$ educationLevel <chr> \"HighSchoolOrCollege\", \"HighSchoolOrCollege\", \"HighScho…\n$ interestGroup  <chr> \"H\", \"B\", \"A\", \"I\", \"H\", \"D\", \"I\", \"A\", \"G\", \"D\", \"D\", …\n$ joviality      <dbl> 0.001626703, 0.328086500, 0.393469590, 0.138063446, 0.8…"
+  },
+  {
+    "objectID": "Take-home-Exercise_1.html#checking-missing-value",
+    "href": "Take-home-Exercise_1.html#checking-missing-value",
+    "title": "Take-home-Exercise_1",
+    "section": "Checking missing value",
+    "text": "Checking missing value\n\n\nShow the code\napply(financial[c(\"participantId\", \"timestamp\",\"category\",\"amount\")], 2, function(x) sum(is.na(x)))\n\n\nparticipantId     timestamp      category        amount \n            0             0             0             0"
+  },
+  {
+    "objectID": "Take-home-Exercise_1.html#checking-duplicate-rows",
+    "href": "Take-home-Exercise_1.html#checking-duplicate-rows",
+    "title": "Take-home-Exercise_1",
+    "section": "Checking duplicate rows",
+    "text": "Checking duplicate rows\n\n\nShow the code\nfinancial %>%\n  distinct(participantId, timestamp, category, amount, .keep_all = TRUE) %>%\n  group_by(participantId, timestamp, category, amount) %>%\n  filter(n() > 1) %>%\n  ungroup() %>%\n  as_tibble()\n\n\n# A tibble: 0 × 4\n# … with 4 variables: participantId <dbl>, timestamp <dttm>, category <chr>,\n#   amount <dbl>"
   }
 ]

@@ -1,3 +1,41 @@
 ---
 title: "Take-home-Exercise_1"
 ---
+
+## Read csv data and EDA
+```{r}
+#| code-fold: false
+pacman::p_load(rstatix, gt, patchwork, tidyverse)
+
+financial<- read_csv("data/FinancialJournal.csv",show_col_types = FALSE)
+glimpse(financial,width=NULL)
+
+```
+
+```{r}
+#| code-fold: false
+participants <- read_csv("data/Participants.csv",show_col_types = FALSE)
+glimpse(participants,width=NULL)
+```
+## Checking missing value
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+apply(financial[c("participantId", "timestamp","category","amount")], 2, function(x) sum(is.na(x)))
+
+```
+## Checking duplicate rows
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+financial %>%
+  distinct(participantId, timestamp, category, amount, .keep_all = TRUE) %>%
+  group_by(participantId, timestamp, category, amount) %>%
+  filter(n() > 1) %>%
+  ungroup() %>%
+  as_tibble()
+
+
+```
+
+  
