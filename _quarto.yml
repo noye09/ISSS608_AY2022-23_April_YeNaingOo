@@ -29,8 +29,8 @@ website:
         href: https://github.com/noye09    
       contents:
         - Inclass_ex04.qmd
-        - tutorial-1.qmd
-        - tutorial-2.qmd
+        - Inclass_ex05.qmd
+        - MC1.qmd
         
     - title: "Take Home Exercises"
       contents:

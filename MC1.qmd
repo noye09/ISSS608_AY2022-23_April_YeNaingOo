@@ -1,0 +1,35 @@
+---
+title: "MC1"
+author: "Ye Naing Oo"
+date: "13 May 2023"
+date-modified: "'r Sys.Date()'"
+
+execute: 
+  echo: true
+  eval: true
+  warning: false
+---
+
+```{r}
+pacman::p_load(jsonlite,tidygraph,ggraph, visNetwork, tidyverse)
+
+
+```
+
+```{r}
+
+MC1 <- fromJSON("data/MC1/MC1.json")
+
+```
+
+```{r}
+MC1_nodes <- as_tibble(MC1$nodes) %>% 
+  select(id, type, country)
+
+glimpse(MC1_nodes)
+
+MC1_edges <- as_tibble(MC1$links) %>% 
+  select(source, target, type, weight, key)
+
+glimpse(MC1_edges)
+```

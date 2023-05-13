@@ -1,5 +1,5 @@
 ---
-title: "Inclass_ex04"
+title: "Inclass Exercise 04"
 author: "Ye Naing Oo"
 date: "06 May 2023"
 date-modified: "'r Sys.Date()'"
@@ -16,7 +16,7 @@ pacman::p_load(rstatix, gt, patchwork, tidyverse)
 ```
 
 ```{r}
-exam_data <- read.csv("Hands-on_Ex04/data/Exam_data.csv")
+exam_data <- read.csv("data/Hands-on_Ex04/Exam_data.csv")
 
 ```
 

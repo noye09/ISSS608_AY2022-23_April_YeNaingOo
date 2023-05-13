@@ -1,11 +1,18 @@
 ---
 title: "Take-home-Exercise_1"
+
+execute: 
+  echo: true
+  eval: true
+  warning: false
+  output: true
 ---
 
 ## Read csv data and EDA
+
 ```{r}
-#| code-fold: false
-pacman::p_load(rstatix, gt, patchwork, tidyverse)
+#| output: false
+pacman::p_load(rstatix, gt,visNetwork, patchwork, tidyverse)
 
 financial<- read_csv("data/FinancialJournal.csv",show_col_types = FALSE)
 glimpse(financial,width=NULL)
@@ -13,29 +20,65 @@ glimpse(financial,width=NULL)
 ```
 
 ```{r}
-#| code-fold: false
+#| output: false
 participants <- read_csv("data/Participants.csv",show_col_types = FALSE)
 glimpse(participants,width=NULL)
 ```
+```{r}
+#| code-fold: false
+joined_data <- left_join(financial, participants, by = join_by(participantId   == participantId  ))
+glimpse(joined_data,width=NULL)
+```
+
 ## Checking missing value
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
-apply(financial[c("participantId", "timestamp","category","amount")], 2, function(x) sum(is.na(x)))
+apply(joined_data[c("participantId", "timestamp","category","amount","householdSize","haveKids","age","educationLevel","interestGroup","joviality")], 2, function(x) sum(is.na(x)))
 
 ```
+
 ## Checking duplicate rows
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
-financial %>%
-  distinct(participantId, timestamp, category, amount, .keep_all = TRUE) %>%
-  group_by(participantId, timestamp, category, amount) %>%
+joined_data %>%
+  distinct(participantId, timestamp, category, amount, householdSize, haveKids, age, educationLevel, interestGroup, joviality, .keep_all = TRUE) %>%
+  group_by(participantId, timestamp, category, amount, householdSize, haveKids, age, educationLevel, interestGroup, joviality) %>%
   filter(n() > 1) %>%
   ungroup() %>%
   as_tibble()
 
+```
+```{r}
+count_data <- joined_data %>% 
+  count(participantId) 
+
+ggplot(count_data, aes(x = reorder(participantId, n), y = n)) +
+  geom_bar(stat = "identity", width = 1) +
+  xlab("Participant ID") +
+  ylab("Count") +
+  ggtitle("Frequency of Participant IDs") +
+  geom_hline(yintercept = 50, color = "red")+
+  theme(axis.text.x = element_blank(),  # Remove y-axis tick labels
+        axis.ticks.x = element_blank())  # Remove y-axis ticks
+
+# Calculate quartiles and IQR
+q1 <- quantile(count_data$n, 0.25)
+q3 <- quantile(count_data$n, 0.75)
+iqr <- q3 - q1
+
+# Define outlier cutoff values
+lower_cutoff <- q1 - 1.5 * iqr
+upper_cutoff <- q3 + 1.5 * iqr
+
+# Identify outliers
+outliers <- count_data$n[count_data$n < lower_cutoff | count_data$n > upper_cutoff]
+
+# Display outliers
+outliers
 
 ```
 
-  
