@@ -42,11 +42,14 @@ website:
 
 format:
   html:
+    grid:
+      body-width: 1200px
     theme: Flatly
     css: styles.css
     toc: true
     code-fold: true
     code-summary: "Show the code"
     navbar: true
+  
 editor: visual
     
