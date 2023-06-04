@@ -35,6 +35,7 @@ website:
     - title: "Take Home Exercises"
       contents:
         - Take-home-Exercise_1.qmd
+        - Take-home-Exercise_2.qmd
         # navigation items
         
   

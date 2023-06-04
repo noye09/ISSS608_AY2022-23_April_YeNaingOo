@@ -82,9 +82,7 @@ print(missing_data)
 
 ### Removing outliers
 
-Removed Participants with with not enough data points in FinancialJournal.
-Filtered out these participantId from all the original tables.
-Plot a histogram of the outlier participantId.
+Removed Participants with with not enough data points in FinancialJournal. Filtered out these participantId from all the original tables. Plot a histogram of the outlier participantId.
 
 ```{r}
 # Calculate count data
@@ -132,9 +130,8 @@ ggplot(count_data, aes(x = reorder(participantId, count), y = count)) +
 ```
 
 ### Transform using pviot_wider
-transform financial data using pviot_wider by "category"
-Replace NA wil '0' and added year, month, weekdays and date fields.
 
+transform financial data using pviot_wider by "category" Replace NA wil '0' and added year, month, weekdays and date fields.
 
 ```{r}
 transformed_financial<- filtered_financial %>% 
@@ -164,6 +161,7 @@ head(transformed_financial, 5) %>%
 ```
 
 ## Visulization on the dataset
+
 ### Distribution of participants data
 
 ::: panel-tabset
@@ -210,7 +208,9 @@ ggplot(data = filtered_participants) +
 :::
 
 ### Distribution of financial data
+
 Overview distribution of a continuous variable across multiple categories.
+
 ```{r}
 ggplot(filtered_financial, aes(x = amount,color = category, y = category)) + 
   ggridges::geom_density_ridges() +
@@ -218,6 +218,7 @@ ggplot(filtered_financial, aes(x = amount,color = category, y = category)) +
 ```
 
 Interactive distribution summary in ggplotly.
+
 ```{r}
 # Create the ggplot object
 p <- ggplot(filtered_financial, aes(x = amount, color = category, fill = category)) +
@@ -232,6 +233,7 @@ p
 ```
 
 ### Wage and Spending across 12 month
+
 Monthly wage and spending consistent across all 12 month except RentAdjustment.
 
 ```{r}
@@ -245,8 +247,9 @@ ggplot(data = filtered_financial, aes(x = month, y = category, fill = after_stat
   ease_aes('linear')
 
 ```
-Spending for Recreation is usually higher on weekends.
-Spending for Shelter is usually on 1st or 2nd of each month.
+
+Spending for Recreation is usually higher on weekends. Spending for Shelter is usually on 1st or 2nd of each month.
+
 ```{r}
 p1 <- ggplot(transformed_financial, aes(x = weekdays, y = Recreation)) +
   geom_bar(stat = "identity", width = 0.5) +
@@ -264,13 +267,13 @@ p2 <- ggplot(transformed_financial, aes(x = day, y = Shelter)) +
 p1+p2
 ```
 
+### InterestGroup vs categorical variables
 
-
-
-### InterestGroup vs categorical variables  
 ::: panel-tabset
 ## educationLevel
+
 HighSchoolOrCOllege are majority in all interest group.
+
 ```{r}
 filtered_participants %>% 
   count(interestGroup,educationLevel) %>%  
@@ -279,7 +282,9 @@ filtered_participants %>%
 ```
 
 ## haveKids
+
 Most don't have kids.
+
 ```{r}
 filtered_participants %>% 
   count(interestGroup, haveKids) %>%  
@@ -288,7 +293,9 @@ filtered_participants %>%
 ```
 
 ## householdSize
+
 And group D mostly have 3 people in their household
+
 ```{r}
 filtered_participants %>% 
   count(interestGroup, householdSize) %>%  
@@ -297,11 +304,8 @@ filtered_participants %>%
 ```
 :::
 
-
-
-
-
 ### Reference:
-#### [Ref](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)
-#### [Ref](http://uc-r.github.io/gda)
 
+#### [Ref](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)
+
+#### [Ref](http://uc-r.github.io/gda)
