@@ -1,4 +1,4 @@
-pacman::p_load(jsonlite, tidygraph, ggraph, visNetwork, lubridate, tidyverse, fontawesome, plotly)
+pacman::p_load(jsonlite, tidygraph, ggraph, visNetwork, lubridate, tidyverse, fontawesome, plotly, igraph)
 
 mc2_data <- fromJSON("data/MC2/mc2_challenge_graph.json")
 
@@ -32,16 +32,17 @@ mc2_edges_parent_hscode <- inner_join (mc2_edges,HS_code_3_India,
 # Filter out rows where weights is greater than 20
 # Remove the grouping
 
-mc2_edges_aggregated <- mc2_edges_parent_hscode %>%
-  #filter(Year == "2028") %>% 
+mc2_edges_aggregated_all <- mc2_edges_parent_hscode %>%
   group_by(source, target, Year, parent_hscode, HS_Name) %>% 
   summarise(weights = n(), Totalkg = sum(weightkg)) %>% 
   filter(source != target) %>%
   filter(weights > 20) %>% 
   ungroup() 
 
+mc2_edges_aggregated <- mc2_edges_aggregated_all %>% filter(Year == "2034")
 
 
+#############################################
 
 id1 <- mc2_edges_aggregated %>%
   select(source) %>%
@@ -52,33 +53,10 @@ id2 <- mc2_edges_aggregated %>%
 mc2_nodes_extracted <- rbind(id1, id2) %>%
   distinct()
 
-
-####test
-mc2_edges_aggregated_bin <- mc2_edges_parent_hscode %>%
-  group_by(source, target, Year, parent_hscode,HS_Name ) %>%
-  summarise(weights = n(),Totalkg = sum(weightkg)) %>%
-  filter(source!=target) %>%
-  ungroup()
-
-
-# Define the percentage breakpoints for binning
-percentages <- c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)
-# Calculate the quantiles based on the defined percentages
-breakpoints_Totalkg <- quantile(mc2_edges_aggregated_bin$Totalkg, percentages)
-
-breakpoints_Totalkg <- round(breakpoints_Totalkg, digits = 2)
-
-bin_labels <- c("10", "20", "30", "40", "50", "60", "70", "80", "90", "100")
-
-# Bin the 'values' column using the cut() function
-mc2_edges_aggregated_bin$Totalkg_bin <- cut(mc2_edges_aggregated_bin$Totalkg, breakpoints_Totalkg, labels = bin_labels)
-
-
-
 #############################################
 
 plot_ly(
-  data = mc2_edges_aggregated,
+  data = mc2_edges_aggregated_all,
   x = ~Year,
   y = ~Totalkg,
   color = ~HS_Name,
@@ -86,22 +64,22 @@ plot_ly(
 ) %>% 
   layout( title="Yearly total Weight of Seafood by category (Parent HS code)",barmode = "stack")
 
-
-top_20_sources <- mc2_edges_aggregated %>%
+#############################################
+top_X_sources <- mc2_edges_aggregated %>%
   group_by(source) %>%
   summarise(Total_Totalkg = sum(Totalkg)) %>%
-  top_n(20, Total_Totalkg) %>%
+  top_n(10, Total_Totalkg) %>%
   inner_join(mc2_edges_aggregated, by = "source") 
 
 plot_ly(
-  data = top_20_sources,
+  data = top_x_sources,
   x = ~Totalkg,
   y = ~reorder(source, Total_Totalkg),
   color = ~HS_Name,
   type = "bar"
 ) %>% 
   layout(
-    title = "Top 20 Exporters by weight",
+    title = "Top 10 Exporters by weight (2034)",
     barmode = "stack"
   )
 
@@ -136,6 +114,10 @@ mc2_edges_aggregated_id <- mc2_edges_aggregated %>%
   select(from,to,parent_hscode,HS_Name,Year,weights,Totalkg,source,target)
 
 
+
+#############################################
+
+
 mc2_graph <- tbl_graph(nodes = mc2_nodes_id,
                        edges = mc2_edges_aggregated_id,
                        directed = TRUE)
@@ -165,5 +147,47 @@ visNetwork(nodes_df,edges_df, width = "100%",main = "A really simple example") %
 
 
 #############################################
+
+
+
+# Calculate degree centrality
+degree_centrality <- degree(mc2_graph)
+
+# Calculate betweenness centrality
+betweenness_centrality <- betweenness(mc2_graph)
+
+# Calculate closeness centrality
+closeness_centrality <- closeness(mc2_graph)
+
+# Calculate eigenvector centrality
+eigenvector_centrality <- eigen_centrality(mc2_graph)$vector
+
+# Add centrality measures to the nodes data frame
+nodes_df$degree_centrality <- degree_centrality
+nodes_df$betweenness_centrality <- betweenness_centrality
+
+nodes_df$closeness_centrality <- closeness_centrality
+nodes_df$closeness_centrality <- round(nodes_df$closeness_centrality, digits = 1)
+
+nodes_df$eigenvector_centrality <- eigenvector_centrality
+
+# Set threshold values for centrality measures
+degree_threshold <- 5
+betweenness_threshold <- 0.1
+closeness_threshold <- 0.3
+eigenvector_threshold <- 0.2
+
+# Filter nodes based on centrality thresholds
+filtered_nodes <- nodes_df[degree_centrality >= degree_threshold , ]
+
+# Create the network visualization with filtered nodes
+visNetwork(filtered_nodes, edges_df, width = "100%") %>%
+  visIgraphLayout(layout = "layout_with_fr") %>%
+  visEdges(arrows = "from", smooth = list(enabled = TRUE, type = "curvedCW")) %>%
+  visNodes() %>%
+  visLegend() %>%
+  visOptions(highlightNearest = TRUE)
+
+
 
 

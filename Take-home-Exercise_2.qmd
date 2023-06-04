@@ -16,7 +16,7 @@ load libraries
 ```{r}
 #| output: false
 #| code-fold: false
-pacman::p_load(jsonlite, tidygraph, ggraph, visNetwork, lubridate, tidyverse, fontawesome, plotly)
+pacman::p_load(jsonlite, tidygraph, ggraph, visNetwork, lubridate, tidyverse, fontawesome, plotly,igraph)
 ```
 
 Read json data file
@@ -49,6 +49,7 @@ mc2_edges <- as_tibble(mc2_data$links) %>%
   select(source, target, ArrivalDate, Year, Mth, hscode, parent_hscode, valueofgoods_omu, 
          volumeteu, weightkg, valueofgoodsusd) %>% 
   distinct()
+ 
 ```
 
 Inner join with HS_code_3_India.csv for 'HS_Name'
@@ -68,11 +69,12 @@ Calculate the count of weights and the sum of Totalkg within each group
 Filter out rows where source is equal to target
 Filter out rows where weights is greater than 20
 Remove the grouping
+
 ```{r}
 #| output: false
 #| code-fold: false
-#| 
-mc2_edges_aggregated <- mc2_edges_parent_hscode %>%
+
+mc2_edges_aggregated_all <- mc2_edges_parent_hscode %>%
   group_by(source, target, Year, parent_hscode, HS_Name) %>% 
   summarise(weights = n(), Totalkg = sum(weightkg)) %>% 
   filter(source != target) %>%
@@ -80,6 +82,14 @@ mc2_edges_aggregated <- mc2_edges_parent_hscode %>%
   ungroup() 
 ```
 
+Aggregate edges data for latest year 2034
+```{r}
+#| output: false
+#| code-fold: false
+
+mc2_edges_aggregated <- mc2_edges_aggregated_all %>% filter(Year == "2034")
+
+```
 
 Extract nodes from source and target to make sure every nodes is present.
 ```{r}
@@ -129,8 +139,9 @@ mc2_edges_aggregated_id <- mc2_edges_aggregated %>%
 ## Yearly total Weight
 
 ```{r}
+
 plot_ly(
-  data = mc2_edges_aggregated,
+  data = mc2_edges_aggregated_all,
   x = ~Year,
   y = ~Totalkg,
   color = ~HS_Name,
@@ -143,32 +154,30 @@ plot_ly(
 ## Top Exporters by weight 
 
 ```{r}
-#The provided code identifies the top 20 exporters by weight and creates a stacked bar plot to visualize their distribution.
+#The provided code identifies the top 10 exporters by weight and creates a stacked bar plot to visualize their distribution.
 
-top_20_sources <- mc2_edges_aggregated %>%
+top_sources <- mc2_edges_aggregated %>%
   group_by(source) %>%
   summarise(Total_Totalkg = sum(Totalkg)) %>%
-  top_n(20, Total_Totalkg) %>%
+  top_n(10, Total_Totalkg) %>%
   inner_join(mc2_edges_aggregated, by = "source") 
 
 plot_ly(
-  data = top_20_sources,
+  data = top_sources,
   x = ~Totalkg,
   y = ~reorder(source, Total_Totalkg),
   color = ~HS_Name,
   type = "bar"
 ) %>% 
   layout(
-    title = "Top 20 Exporters by weight (2028 to 2034)",
+    title = "Top 10 Exporters by weight (2034)",
     barmode = "stack"
   )
-
 ```
 :::
 
-Prepared and customize edges and nodes for visNetwork()
+## Network map by Area of fish source (rcvcountry) 
 ```{r}
-#| output: false
 #| code-fold: false
 mc2_graph <- tbl_graph(nodes = mc2_nodes_id,
                        edges = mc2_edges_aggregated_id,
@@ -183,22 +192,144 @@ nodes_df <- mc2_graph %>%
   as.tibble() %>%
   rename(label = id) %>%
   mutate(group = rcvcountry) %>%
+  mutate(title = rcvcountry) %>%
   mutate(id=row_number())
-```
 
 
-Draw visNetwork()
-```{r}
-#| code-fold: false
-
-visNetwork(nodes_df,edges_df, width = "100%",main = "A really simple example") %>%
+visNetwork(nodes_df,edges_df, width = "100%",main = "Network map by Area of fish source (rcvcountry) ") %>%
   #visNodes(shape = "square") %>% 
   visIgraphLayout(layout = "layout_with_fr") %>%
   visEdges(arrows = "from",smooth = list(enabled = TRUE, type = "curvedCW")) %>%
-  visGroups(groupname = "Oceanus",shape = "icon", icon = list(code = "f005", size = 75)) %>% 
   visLegend() %>%
-  visOptions(highlightNearest = TRUE) %>%
-  visOptions(selectedBy = "rcvcountry") %>%
-  visHierarchicalLayout() %>%
+  visOptions(selectedBy = "rcvcountry")
+```
+
+
+## Calculate degree centrality
+
+```{r}
+#| code-fold: false
+# Calculate degree centrality
+degree_centrality <- degree(mc2_graph)
+
+# Calculate betweenness centrality
+betweenness_centrality <- betweenness(mc2_graph)
+
+# Calculate closeness centrality
+closeness_centrality <- closeness(mc2_graph)
+
+# Calculate eigenvector centrality
+eigenvector_centrality <- eigen_centrality(mc2_graph)$vector
+
+# Add centrality measures to the nodes data frame
+nodes_df$degree_centrality <- degree_centrality
+nodes_df$betweenness_centrality <- betweenness_centrality
+
+nodes_df$closeness_centrality <- closeness_centrality
+nodes_df$closeness_centrality <- round(nodes_df$closeness_centrality, digits = 1)
+
+nodes_df$eigenvector_centrality <- eigenvector_centrality
+nodes_df$eigenvector_centrality <- round(nodes_df$eigenvector_centrality, digits = 3)
+```
+
+## Network map by degree_centrality. 
+Assign 'group' column for color coding 
+Assign 'title' column for tooltip
+```{r}
+#| code-fold: false
+# Set threshold values for centrality measures
+degree_threshold <- 5
+
+
+# Filter nodes based on centrality thresholds
+filtered_nodes <- nodes_df[degree_centrality >= degree_threshold , ]
+filtered_nodes$group <- degree_centrality[degree_centrality >= degree_threshold]
+filtered_nodes$title <- degree_centrality[degree_centrality >= degree_threshold]
+
+# Create the network visualization with filtered nodes
+visNetwork(filtered_nodes, edges_df, width = "100%",main = "Network map by degree_centrality") %>%
+  visIgraphLayout(layout = "layout_with_fr") %>%
+  visEdges(arrows = "from", smooth = list(enabled = TRUE, type = "curvedCW")) %>%
+  visNodes() %>%
+  visLegend() %>%
+  visOptions(highlightNearest = TRUE)  %>%
+  visOptions(selectedBy = "degree_centrality") %>%
+  visGroups(groupname = "62" ,shape = "icon", icon = list(code = "f005", size = 100)) %>% 
   addFontAwesome()
+```
+## Network map by betweenness_centrality. 
+Assign 'group' column for color coding 
+Assign 'title' column for tooltip
+```{r}
+#| code-fold: false
+# Set threshold values for centrality measures
+betweenness_threshold <- 0.1
+
+# Filter nodes based on centrality thresholds
+filtered_nodes <- nodes_df[betweenness_centrality >= betweenness_threshold , ]
+filtered_nodes$group <- betweenness_centrality[betweenness_centrality >= betweenness_threshold]
+filtered_nodes$title <- betweenness_centrality[betweenness_centrality >= betweenness_threshold]
+
+# Create the network visualization with filtered nodes
+visNetwork(filtered_nodes, edges_df, width = "100%",main = "Network map by betweenness_centrality") %>%
+  visIgraphLayout(layout = "layout_with_fr") %>%
+  visEdges(arrows = "from", smooth = list(enabled = TRUE, type = "curvedCW")) %>%
+  visNodes() %>%
+  visLegend() %>%
+  visOptions(highlightNearest = TRUE)  %>%
+  visOptions(selectedBy = "betweenness_centrality") 
+```
+
+## Network map by closeness_centrality 
+Assign 'group' column for color coding 
+Assign 'title' column for tooltip
+Added remove NA line of code for isolated nodes.
+```{r}
+#| code-fold: false
+# Set threshold values for centrality measures
+closeness_threshold <- 0.3
+
+# Filter nodes based on centrality thresholds
+filtered_nodes <- nodes_df[closeness_centrality >= closeness_threshold , ]
+
+filtered_nodes$group <- closeness_centrality[closeness_centrality >= closeness_threshold]
+filtered_nodes$title <- closeness_centrality[closeness_centrality >= closeness_threshold]
+
+# Exclude nodes with NA values
+filtered_nodes <- filtered_nodes[complete.cases(filtered_nodes), ]
+
+# Create the network visualization with filtered nodes
+visNetwork(filtered_nodes, edges_df, width = "100%",main = "Network map by closeness_centrality") %>%
+  visIgraphLayout(layout = "layout_with_fr") %>%
+  visEdges(arrows = "from", smooth = list(enabled = TRUE, type = "curvedCW")) %>%
+  visNodes() %>%
+  visLegend() %>%
+  visOptions(highlightNearest = TRUE)  %>%
+  visOptions(selectedBy = "closeness_centrality") 
+```
+
+## Network map by eigenvector_centrality 
+Assign 'group' column for color coding 
+Assign 'title' column for tooltip
+Added remove NA line of code for isolated nodes.
+```{r}
+#| code-fold: false
+# Set threshold values for centrality measures
+eigenvector_threshold <- 0.2
+
+# Filter nodes based on centrality thresholds
+filtered_nodes <- nodes_df[eigenvector_centrality >= eigenvector_threshold , ]
+
+filtered_nodes$group <- eigenvector_centrality[eigenvector_centrality >= eigenvector_threshold]
+filtered_nodes$title <- eigenvector_centrality[eigenvector_centrality >= eigenvector_threshold]
+
+
+# Create the network visualization with filtered nodes
+visNetwork(filtered_nodes, edges_df, width = "100%",main = "Network map by eigenvector_centrality") %>%
+  visIgraphLayout(layout = "layout_with_fr") %>%
+  visEdges(arrows = "from", smooth = list(enabled = TRUE, type = "curvedCW")) %>%
+  visNodes() %>%
+  visLegend() %>%
+  visOptions(highlightNearest = TRUE)  %>%
+  visOptions(selectedBy = "eigenvector_centrality") 
 ```
