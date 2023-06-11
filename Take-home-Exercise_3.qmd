@@ -1,0 +1,168 @@
+---
+title: "Take Home Exercise 3"
+
+execute: 
+  echo: true
+  eval: true
+  warning: false
+  output: true
+---
+
+[Instruction on Take Home Exercise 3](https://isss608-ay2022-23apr.netlify.app/take-home_ex/th_ex03)
+
+## Data preparation
+
+load libraries.
+```{r}
+#| output: false
+#| code-fold: false
+pacman::p_load(jsonlite, tidygraph, ggraph, igraph,
+               visNetwork, graphlayouts, ggforce, 
+               skimr, tidytext, tidyverse)
+```
+
+Read MC3 data from Json file.
+```{r}
+#| output: false
+#| code-fold: false
+mc3_data <- fromJSON("data/MC3/MC3.json")
+```
+
+Extracting edges
+```{r}
+#| output: false
+#| code-fold: false
+mc3_edges <- as_tibble(mc3_data$links) %>% 
+  distinct() %>%
+  mutate(source = as.character(source),
+         target = as.character(target),
+         type = as.character(type)) %>%
+  group_by(source, target, type) %>%
+    summarise(weights = n()) %>%
+  filter(source!=target) %>%
+  ungroup()
+```
+Extracting nodes.
+"product_services" column value with "character(0)" are replaced with "unknown". "revenue_omu" with NA are replace with numerical value of '0'
+```{r}
+#| output: false
+#| code-fold: false
+mc3_nodes <- as_tibble(mc3_data$nodes) %>%
+  mutate(country = as.character(country),
+         id = as.character(id),
+         product_services = ifelse(product_services == "character(0)", "unknown", as.character(product_services)),
+         revenue_omu = coalesce(as.numeric(as.character(revenue_omu)), 0),
+         type = as.character(type)) %>%
+  select(id, country, type, revenue_omu, product_services)
+
+
+```
+## Initial Network Visualisation
+```{r}
+#| code-fold: true
+id1 <- mc3_edges %>%
+  select(source) %>%
+  rename(id = source)
+id2 <- mc3_edges %>%
+  select(target) %>%
+  rename(id = target)
+mc3_nodes1 <- rbind(id1, id2) %>%
+  distinct() %>%
+  left_join(mc3_nodes,
+            unmatched = "drop")
+
+mc3_graph <- tbl_graph(nodes = mc3_nodes1,
+                       edges = mc3_edges,
+                       directed = FALSE) %>%
+  mutate(betweenness_centrality = centrality_betweenness(),
+         closeness_centrality = centrality_closeness())
+
+mc3_graph %>%
+  filter(betweenness_centrality >= 100000) %>%
+ggraph(layout = "fr") +
+  geom_edge_link(aes(alpha=0.5)) +
+  geom_node_point(aes(
+    size = betweenness_centrality,
+    colors = "lightblue",
+    alpha = 0.5)) +
+  scale_size_continuous(range=c(1,10))+
+  theme_graph()
+
+```
+Tokenisation of the 'product_services' column. Remove stop words and remove row with unknown services.
+```{r}
+#| code-fold: false
+token_nodes <- mc3_nodes %>%
+  unnest_tokens(word, product_services)
+
+stopwords_removed <- token_nodes %>% 
+  anti_join(stop_words) %>% 
+  filter (word != 'unknown')
+```
+Count of unique words found in product_services field
+```{r}
+#| output: false
+#| code-fold: false
+
+token_nodes %>%
+  count(word, sort = TRUE) %>%
+  top_n(20) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(x = word, y = n)) +
+  geom_col() +
+  xlab(NULL) +
+  coord_flip() +
+      labs(x = "Count",
+      y = "Unique words",
+      title = "Count of unique words found in product_services field")
+
+```
+
+Trying to get representative token for each ID (work in progress)
+```{r}
+#| output: false
+#| code-fold: true
+# 
+# library("quanteda")
+# data_corpus_sotu <- readRDS(url("https://quanteda.org/data/data_corpus_sotu.rds"))
+# dfmat_sotu <- corpus_subset(data_corpus_sotu, Date > as.Date("1980-01-01")) |>
+#     tokens(remove_punct = TRUE) |>
+#     tokens_wordstem(language = "en") |>
+#     tokens_remove(stopwords("en")) |>
+#     dfm()
+# dfmat_sotu <- dfm_trim(dfmat_sotu, min_termfreq = 5, min_docfreq = 3)
+# 
+# tstat_sim <- textstat_simil(dfmat_sotu, dfmat_sotu[, c("fair", "health", "terror")],
+#     method = "cosine", margin = "features")
+# lapply(as.list(tstat_sim), head, 10)
+# 
+# ```
+# ```{r}
+# 
+# # Create the graph object
+# mc3_graph <- tbl_graph(nodes = mc3_nodes1, edges = mc3_edges, directed = FALSE)
+# 
+# # Convert the graph to an igraph object
+# mc3_igraph <- as.igraph(mc3_graph)
+# 
+# # Perform community detection using the Girvan-Newman algorithm
+# gn_communities <- edge.betweenness.community(mc3_igraph)
+# 
+# 
+# # Add community membership as a vertex attribute
+# V(mc3_graph)$community <- membership(gn_communities)
+# 
+# 
+# # Create the visNetwork graph object
+# vis_graph <- toVisNetworkData(mc3_graph)
+# 
+# # Set the community membership as a color attribute for nodes
+# vis_graph$nodes$color <- V(mc3_graph)$community
+# 
+# # Plot the graph with communities
+# visNetwork(nodes = vis_graph$nodes, edges = vis_graph$edges) %>%
+#   visIgraphLayout() %>%
+#   visOptions(highlightNearest = TRUE)
+# 
+```
+

@@ -138,5 +138,33 @@
     "title": "Take Home Exercise 2",
     "section": "Calculate degree centrality",
     "text": "Calculate degree centrality\n\n# Calculate degree centrality\ndegree_centrality <- degree(mc2_graph)\n\n# Calculate betweenness centrality\nbetweenness_centrality <- betweenness(mc2_graph)\n\n# Calculate closeness centrality\ncloseness_centrality <- closeness(mc2_graph)\n\n# Calculate eigenvector centrality\neigenvector_centrality <- eigen_centrality(mc2_graph)$vector\n\n# Add centrality measures to the nodes data frame\nnodes_df$degree_centrality <- degree_centrality\nnodes_df$betweenness_centrality <- betweenness_centrality\n\nnodes_df$closeness_centrality <- closeness_centrality\nnodes_df$closeness_centrality <- round(nodes_df$closeness_centrality, digits = 1)\n\nnodes_df$eigenvector_centrality <- eigenvector_centrality\nnodes_df$eigenvector_centrality <- round(nodes_df$eigenvector_centrality, digits = 3)"
+  },
+  {
+    "objectID": "Take-home-Exercise_3.html",
+    "href": "Take-home-Exercise_3.html",
+    "title": "Take Home Exercise 3",
+    "section": "",
+    "text": "Instruction on Take Home Exercise 3"
+  },
+  {
+    "objectID": "Take-home-Exercise_3.html#data-preparation",
+    "href": "Take-home-Exercise_3.html#data-preparation",
+    "title": "Take Home Exercise 3",
+    "section": "Data preparation",
+    "text": "Data preparation\nload libraries.\n\npacman::p_load(jsonlite, tidygraph, ggraph, igraph,\n               visNetwork, graphlayouts, ggforce, \n               skimr, tidytext, tidyverse)\n\nRead MC3 data from Json file.\n\nmc3_data <- fromJSON(\"data/MC3/MC3.json\")\n\nExtracting edges\n\nmc3_edges <- as_tibble(mc3_data$links) %>% \n  distinct() %>%\n  mutate(source = as.character(source),\n         target = as.character(target),\n         type = as.character(type)) %>%\n  group_by(source, target, type) %>%\n    summarise(weights = n()) %>%\n  filter(source!=target) %>%\n  ungroup()\n\nExtracting nodes. “product_services” column value with “character(0)” are replaced with “unknown”. “revenue_omu” with NA are replace with numerical value of ‘0’\n\nmc3_nodes <- as_tibble(mc3_data$nodes) %>%\n  mutate(country = as.character(country),\n         id = as.character(id),\n         product_services = ifelse(product_services == \"character(0)\", \"unknown\", as.character(product_services)),\n         revenue_omu = coalesce(as.numeric(as.character(revenue_omu)), 0),\n         type = as.character(type)) %>%\n  select(id, country, type, revenue_omu, product_services)"
+  },
+  {
+    "objectID": "data/Hands-on_Ex08/geospatial/MPSZ-2019.html",
+    "href": "data/Hands-on_Ex08/geospatial/MPSZ-2019.html",
+    "title": "ISSS608 Ye Naing Oo",
+    "section": "",
+    "text": "<!DOCTYPE qgis PUBLIC ‘http://mrcc.com/qgis.dtd’ ‘SYSTEM’>     dataset\n\n\n        0 0     false"
+  },
+  {
+    "objectID": "Take-home-Exercise_3.html#initial-network-visualisation",
+    "href": "Take-home-Exercise_3.html#initial-network-visualisation",
+    "title": "Take Home Exercise 3",
+    "section": "Initial Network Visualisation",
+    "text": "Initial Network Visualisation\n\n\nShow the code\nid1 <- mc3_edges %>%\n  select(source) %>%\n  rename(id = source)\nid2 <- mc3_edges %>%\n  select(target) %>%\n  rename(id = target)\nmc3_nodes1 <- rbind(id1, id2) %>%\n  distinct() %>%\n  left_join(mc3_nodes,\n            unmatched = \"drop\")\n\nmc3_graph <- tbl_graph(nodes = mc3_nodes1,\n                       edges = mc3_edges,\n                       directed = FALSE) %>%\n  mutate(betweenness_centrality = centrality_betweenness(),\n         closeness_centrality = centrality_closeness())\n\nmc3_graph %>%\n  filter(betweenness_centrality >= 100000) %>%\nggraph(layout = \"fr\") +\n  geom_edge_link(aes(alpha=0.5)) +\n  geom_node_point(aes(\n    size = betweenness_centrality,\n    colors = \"lightblue\",\n    alpha = 0.5)) +\n  scale_size_continuous(range=c(1,10))+\n  theme_graph()\n\n\n\n\n\nTokenisation of the ‘product_services’ column. Remove stop words and remove row with unknown services.\n\ntoken_nodes <- mc3_nodes %>%\n  unnest_tokens(word, product_services)\n\nstopwords_removed <- token_nodes %>% \n  anti_join(stop_words) %>% \n  filter (word != 'unknown')\n\nCount of unique words found in product_services field\n\ntoken_nodes %>%\n  count(word, sort = TRUE) %>%\n  top_n(20) %>%\n  mutate(word = reorder(word, n)) %>%\n  ggplot(aes(x = word, y = n)) +\n  geom_col() +\n  xlab(NULL) +\n  coord_flip() +\n      labs(x = \"Count\",\n      y = \"Unique words\",\n      title = \"Count of unique words found in product_services field\")\n\nTrying to get representative token for each ID (work in progress)\n\n\nShow the code\n# \n# library(\"quanteda\")\n# data_corpus_sotu <- readRDS(url(\"https://quanteda.org/data/data_corpus_sotu.rds\"))\n# dfmat_sotu <- corpus_subset(data_corpus_sotu, Date > as.Date(\"1980-01-01\")) |>\n#     tokens(remove_punct = TRUE) |>\n#     tokens_wordstem(language = \"en\") |>\n#     tokens_remove(stopwords(\"en\")) |>\n#     dfm()\n# dfmat_sotu <- dfm_trim(dfmat_sotu, min_termfreq = 5, min_docfreq = 3)\n# \n# tstat_sim <- textstat_simil(dfmat_sotu, dfmat_sotu[, c(\"fair\", \"health\", \"terror\")],\n#     method = \"cosine\", margin = \"features\")\n# lapply(as.list(tstat_sim), head, 10)\n# \n# ```\n# ```{r}\n# \n# # Create the graph object\n# mc3_graph <- tbl_graph(nodes = mc3_nodes1, edges = mc3_edges, directed = FALSE)\n# \n# # Convert the graph to an igraph object\n# mc3_igraph <- as.igraph(mc3_graph)\n# \n# # Perform community detection using the Girvan-Newman algorithm\n# gn_communities <- edge.betweenness.community(mc3_igraph)\n# \n# \n# # Add community membership as a vertex attribute\n# V(mc3_graph)$community <- membership(gn_communities)\n# \n# \n# # Create the visNetwork graph object\n# vis_graph <- toVisNetworkData(mc3_graph)\n# \n# # Set the community membership as a color attribute for nodes\n# vis_graph$nodes$color <- V(mc3_graph)$community\n# \n# # Plot the graph with communities\n# visNetwork(nodes = vis_graph$nodes, edges = vis_graph$edges) %>%\n#   visIgraphLayout() %>%\n#   visOptions(highlightNearest = TRUE)\n#"
   }
 ]
