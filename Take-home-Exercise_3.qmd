@@ -118,11 +118,11 @@ token_nodes %>%
 
 ```
 
-Trying to get representative token for each ID (work in progress)
+## Trying to get representative token for each ID (work in progress)
 ```{r}
 #| output: false
 #| code-fold: true
-# 
+
 # library("quanteda")
 # data_corpus_sotu <- readRDS(url("https://quanteda.org/data/data_corpus_sotu.rds"))
 # dfmat_sotu <- corpus_subset(data_corpus_sotu, Date > as.Date("1980-01-01")) |>
@@ -135,10 +135,12 @@ Trying to get representative token for each ID (work in progress)
 # tstat_sim <- textstat_simil(dfmat_sotu, dfmat_sotu[, c("fair", "health", "terror")],
 #     method = "cosine", margin = "features")
 # lapply(as.list(tstat_sim), head, 10)
-# 
-# ```
-# ```{r}
-# 
+
+```
+
+## Community grouping (work in progress)
+```{r}
+
 # # Create the graph object
 # mc3_graph <- tbl_graph(nodes = mc3_nodes1, edges = mc3_edges, directed = FALSE)
 # 
@@ -163,6 +165,6 @@ Trying to get representative token for each ID (work in progress)
 # visNetwork(nodes = vis_graph$nodes, edges = vis_graph$edges) %>%
 #   visIgraphLayout() %>%
 #   visOptions(highlightNearest = TRUE)
-# 
+
 ```
 
