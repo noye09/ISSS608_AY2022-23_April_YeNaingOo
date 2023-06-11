@@ -1,0 +1,376 @@
+---
+title: "Take Home Exercise 2"
+
+execute: 
+  echo: true
+  eval: true
+  warning: false
+  output: true
+---
+
+
+[Instruction on Take Home Exercise 2](https://isss608-ay2022-23apr.netlify.app/take-home_ex/th_ex02)
+
+## Data preparation
+
+load libraries
+
+
+```{r}
+#| output: false
+#| code-fold: false
+pacman::p_load(jsonlite, tidygraph, ggraph, visNetwork, lubridate, tidyverse, fontawesome, plotly,igraph)
+```
+
+
+Read json data file
+
+
+```{r}
+#| output: false
+#| code-fold: false
+mc2_data <- fromJSON("data/MC2/mc2_challenge_graph.json")
+
+```
+
+
+Nodes data from the original dataset
+
+
+```{r}
+#| output: false
+#| code-fold: false
+mc2_nodes <- as_tibble(mc2_data$nodes) %>%
+  select(id, shpcountry, rcvcountry)
+
+```
+
+
+Extract the edges/links data from the original dataset. Change the date format of the 'ArrivalDate' column and obtain the year and month data from it.'parent_hscode' column is first 3 digit of hscode. Use the select() function to rearrange the column positions, and apply distinct() to remove any duplicate rows.
+
+
+```{r}
+#| output: false
+#| code-fold: false
+mc2_edges <- as_tibble(mc2_data$links) %>%
+  mutate(ArrivalDate = ymd(arrivaldate)) %>%
+  mutate(Year = year(ArrivalDate)) %>%
+  mutate(Mth = month(ArrivalDate)) %>%
+  mutate(parent_hscode = substr(hscode, 1, 3)) %>%
+  select(source, target, ArrivalDate, Year, Mth, hscode, parent_hscode, valueofgoods_omu, 
+         volumeteu, weightkg, valueofgoodsusd) %>% 
+  distinct()
+ 
+```
+
+
+Inner join with HS_code_3\_India.csv for 'HS_Name' file and convert the data type of the 'parent_hscode' column in the Parent HS code table to character. Perform an inner join with the HS code table based on the 'parent_hscode' column, filtering away any unrelated hscode.(https://connect2india.com/hs-codes-directory/hs-code-3)
+
+
+```{r}
+#| output: false
+#| code-fold: false
+HS_code_3_India <- read.csv("data/MC2/HS_code_3_India.csv",colClasses=c("parent_hscode" ="character"))
+
+mc2_edges_parent_hscode <- inner_join (mc2_edges,HS_code_3_India,
+                                    join_by(parent_hscode   == parent_hscode))
+```
+
+
+Aggregate edges data Group the data by source, target, Year, parent_hscode, and HS_Name Calculate the count of weights and the sum of Totalkg within each group Filter out rows where source is equal to target Filter out rows where weights is greater than 20 Remove the grouping
+
+
+```{r}
+#| output: false
+#| code-fold: false
+
+mc2_edges_aggregated_all <- mc2_edges_parent_hscode %>%
+  group_by(source, target, Year, parent_hscode, HS_Name) %>% 
+  summarise(weights = n(), Totalkg = sum(weightkg)) %>% 
+  filter(source != target) %>%
+  filter(weights > 20) %>% 
+  ungroup() 
+```
+
+
+Aggregate edges data for latest year 2034
+
+
+```{r}
+#| output: false
+#| code-fold: false
+
+mc2_edges_aggregated <- mc2_edges_aggregated_all %>% filter(Year == "2034")
+
+```
+
+
+Extract nodes from source and target to make sure every nodes is present.
+
+
+```{r}
+#| output: false
+#| code-fold: false
+
+id1 <- mc2_edges_aggregated %>%
+  select(source) %>%
+  rename(id = source)
+id2 <- mc2_edges_aggregated %>%
+  select(target) %>%
+  rename(id = target)
+mc2_nodes_extracted <- rbind(id1, id2) %>%
+  distinct()
+```
+
+
+Define node_id to each nodes and added shpcountry,rcvcountry info from original nodes data while replacing empty value. Save it as 'mc2_nodes_id'
+
+
+```{r}
+#| output: false
+#| code-fold: false
+
+mc2_nodes_id <- left_join(mc2_nodes_extracted, mc2_nodes, by = c("id" = "id")) %>%
+  mutate(node_id = 1:nrow(.)) %>%
+  mutate(shpcountry = ifelse(is.na(shpcountry), "unknown_shipTo", shpcountry)) %>%
+  mutate(rcvcountry  = ifelse(is.na(rcvcountry ), "unknown_shipFrom", rcvcountry))
+```
+
+
+Replaced source and target text value with node_id in the 'mc2_edges_aggregated' data. And rearrange column position.
+
+
+```{r}
+#| output: false
+#| code-fold: false
+
+mc2_edges_aggregated_id <- mc2_edges_aggregated %>%
+  left_join(mc2_nodes_id, by = c("source" = "id")) %>%
+  rename(from = node_id) %>%
+  select(-shpcountry,-rcvcountry) %>%
+  left_join(mc2_nodes_id, by = c("target" = "id")) %>%
+  rename(to = node_id) %>%
+  select(-shpcountry,-rcvcountry)  %>%
+  select(from,to,parent_hscode,HS_Name,Year,weights,Totalkg,source,target)
+```
+
+
+## Exploratory data analysis
+
+::: panel-tabset
+## Yearly total Weight
+
+
+```{r}
+
+plot_ly(
+  data = mc2_edges_aggregated_all,
+  x = ~Year,
+  y = ~Totalkg,
+  color = ~HS_Name,
+  type = "bar"
+) %>% 
+  layout( title="Yearly total Weight of Seafood by category (Parent HS code)",barmode = "stack")
+
+```
+
+
+## Top Exporters by weight
+
+
+```{r}
+#The provided code identifies the top 10 exporters by weight and creates a stacked bar plot to visualize their distribution.
+
+top_sources <- mc2_edges_aggregated %>%
+  group_by(source) %>%
+  summarise(Total_Totalkg = sum(Totalkg)) %>%
+  top_n(10, Total_Totalkg) %>%
+  inner_join(mc2_edges_aggregated, by = "source") 
+
+plot_ly(
+  data = top_sources,
+  x = ~Totalkg,
+  y = ~reorder(source, Total_Totalkg),
+  color = ~HS_Name,
+  type = "bar"
+) %>% 
+  layout(
+    title = "Top 10 Exporters by weight (2034)",
+    barmode = "stack"
+  )
+```
+
+:::
+
+## Network map by Area of fish source (rcvcountry)
+
+
+```{r}
+#| code-fold: false
+mc2_graph <- tbl_graph(nodes = mc2_nodes_id,
+                       edges = mc2_edges_aggregated_id,
+                       directed = TRUE)
+
+edges_df <- mc2_graph %>%
+  activate(edges) %>%
+  as.tibble()
+
+nodes_df <- mc2_graph %>%
+  activate(nodes) %>%
+  as.tibble() %>%
+  rename(label = id) %>%
+  mutate(group = rcvcountry) %>%
+  mutate(title = rcvcountry) %>%
+  mutate(id=row_number())
+
+
+visNetwork(nodes_df,edges_df, width = "100%",main = "Network map by Area of fish source (rcvcountry) ") %>%
+  #visNodes(shape = "square") %>% 
+  visIgraphLayout(layout = "layout_with_fr") %>%
+  visEdges(arrows = "from",smooth = list(enabled = TRUE, type = "curvedCW")) %>%
+  visLegend() %>%
+  visOptions(selectedBy = "rcvcountry")
+```
+
+
+## Calculate degree centrality
+
+
+```{r}
+#| code-fold: false
+# Calculate degree centrality
+degree_centrality <- degree(mc2_graph)
+
+# Calculate betweenness centrality
+betweenness_centrality <- betweenness(mc2_graph)
+
+# Calculate closeness centrality
+closeness_centrality <- closeness(mc2_graph)
+
+# Calculate eigenvector centrality
+eigenvector_centrality <- eigen_centrality(mc2_graph)$vector
+
+# Add centrality measures to the nodes data frame
+nodes_df$degree_centrality <- degree_centrality
+nodes_df$betweenness_centrality <- betweenness_centrality
+
+nodes_df$closeness_centrality <- closeness_centrality
+nodes_df$closeness_centrality <- round(nodes_df$closeness_centrality, digits = 1)
+
+nodes_df$eigenvector_centrality <- eigenvector_centrality
+nodes_df$eigenvector_centrality <- round(nodes_df$eigenvector_centrality, digits = 3)
+```
+
+
+## Network map by degree_centrality.
+
+Assign 'group' column for color coding Assign 'title' column for tooltip
+
+
+```{r}
+#| code-fold: false
+# Set threshold values for centrality measures
+degree_threshold <- 5
+
+
+# Filter nodes based on centrality thresholds
+filtered_nodes <- nodes_df[degree_centrality >= degree_threshold , ]
+filtered_nodes$group <- degree_centrality[degree_centrality >= degree_threshold]
+filtered_nodes$title <- degree_centrality[degree_centrality >= degree_threshold]
+
+# Create the network visualization with filtered nodes
+visNetwork(filtered_nodes, edges_df, width = "100%",main = "Network map by degree_centrality") %>%
+  visIgraphLayout(layout = "layout_with_fr") %>%
+  visEdges(arrows = "from", smooth = list(enabled = TRUE, type = "curvedCW")) %>%
+  visNodes() %>%
+  visLegend() %>%
+  visOptions(highlightNearest = TRUE)  %>%
+  visOptions(selectedBy = "degree_centrality") %>%
+  visGroups(groupname = "62" ,shape = "icon", icon = list(code = "f005", size = 100)) %>% 
+  addFontAwesome()
+```
+
+
+## Network map by betweenness_centrality.
+
+Assign 'group' column for color coding Assign 'title' column for tooltip
+
+
+```{r}
+#| code-fold: false
+# Set threshold values for centrality measures
+betweenness_threshold <- 0.1
+
+# Filter nodes based on centrality thresholds
+filtered_nodes <- nodes_df[betweenness_centrality >= betweenness_threshold , ]
+filtered_nodes$group <- betweenness_centrality[betweenness_centrality >= betweenness_threshold]
+filtered_nodes$title <- betweenness_centrality[betweenness_centrality >= betweenness_threshold]
+
+# Create the network visualization with filtered nodes
+visNetwork(filtered_nodes, edges_df, width = "100%",main = "Network map by betweenness_centrality") %>%
+  visIgraphLayout(layout = "layout_with_fr") %>%
+  visEdges(arrows = "from", smooth = list(enabled = TRUE, type = "curvedCW")) %>%
+  visNodes() %>%
+  visLegend() %>%
+  visOptions(highlightNearest = TRUE)  %>%
+  visOptions(selectedBy = "betweenness_centrality") 
+```
+
+
+## Network map by closeness_centrality
+
+Assign 'group' column for color coding Assign 'title' column for tooltip Added remove NA line of code for isolated nodes.
+
+
+```{r}
+#| code-fold: false
+# Set threshold values for centrality measures
+closeness_threshold <- 0.3
+
+# Filter nodes based on centrality thresholds
+filtered_nodes <- nodes_df[closeness_centrality >= closeness_threshold , ]
+
+filtered_nodes$group <- closeness_centrality[closeness_centrality >= closeness_threshold]
+filtered_nodes$title <- closeness_centrality[closeness_centrality >= closeness_threshold]
+
+# Exclude nodes with NA values
+filtered_nodes <- filtered_nodes[complete.cases(filtered_nodes), ]
+
+# Create the network visualization with filtered nodes
+visNetwork(filtered_nodes, edges_df, width = "100%",main = "Network map by closeness_centrality") %>%
+  visIgraphLayout(layout = "layout_with_fr") %>%
+  visEdges(arrows = "from", smooth = list(enabled = TRUE, type = "curvedCW")) %>%
+  visNodes() %>%
+  visLegend() %>%
+  visOptions(highlightNearest = TRUE)  %>%
+  visOptions(selectedBy = "closeness_centrality") 
+```
+
+
+## Network map by eigenvector_centrality
+
+Assign 'group' column for color coding Assign 'title' column for tooltip Added remove NA line of code for isolated nodes.
+
+
+```{r}
+#| code-fold: false
+# Set threshold values for centrality measures
+eigenvector_threshold <- 0.2
+
+# Filter nodes based on centrality thresholds
+filtered_nodes <- nodes_df[eigenvector_centrality >= eigenvector_threshold , ]
+
+filtered_nodes$group <- eigenvector_centrality[eigenvector_centrality >= eigenvector_threshold]
+filtered_nodes$title <- eigenvector_centrality[eigenvector_centrality >= eigenvector_threshold]
+
+
+# Create the network visualization with filtered nodes
+visNetwork(filtered_nodes, edges_df, width = "100%",main = "Network map by eigenvector_centrality") %>%
+  visIgraphLayout(layout = "layout_with_fr") %>%
+  visEdges(arrows = "from", smooth = list(enabled = TRUE, type = "curvedCW")) %>%
+  visNodes() %>%
+  visLegend() %>%
+  visOptions(highlightNearest = TRUE)  %>%
+  visOptions(selectedBy = "eigenvector_centrality") 
+```
+
