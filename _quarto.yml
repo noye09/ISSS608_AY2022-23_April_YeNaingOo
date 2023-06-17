@@ -30,6 +30,7 @@ website:
       contents:
         - Inclass_ex04.qmd
         - Inclass_ex05.qmd
+        - Inclass_ex09.qmd
         - MC1.qmd
         
     - title: "Take Home Exercises"

@@ -1,0 +1,143 @@
+---
+title: "Inclass Exercise 09"
+---
+
+
+```{r}
+pacman::p_load(sf, tmap, tidyverse)
+```
+
+
+not required to add file extension
+```{r}
+mpsz <- st_read(dsn = "data/Hands-on_Ex08/geospatial", 
+                layer = "MP14_SUBZONE_WEB_PL")
+```
+
+check the content 
+```{r}
+mpsz
+```
+
+```{r}
+popdata <- read_csv("data/Hands-on_Ex08/aspatial/respopagesextod2011to2020.csv")
+```
+
+```{r}
+# Filter the dataset for Time == 2020
+popdata2020 <- popdata %>%
+  filter(Time == 2020) %>%
+
+  # Group the data by PA, SZ, and AG
+  group_by(PA, SZ, AG) %>%
+
+  # Summarize the Pop column within each group and rename it as POP
+  summarise(`POP` = sum(`Pop`)) %>%
+
+  # Remove the grouping
+  ungroup() %>%
+
+  # Pivot the data wider, with AG as column names and POP as values
+  pivot_wider(names_from = AG, values_from = POP) %>%
+
+  # Calculate the sum of values in columns 3 to 6 and column 12,
+  # and assign it to the column YOUNG
+  mutate(YOUNG = rowSums(.[3:6]) + rowSums(.[12])) %>%
+
+  # Calculate the sum of values in columns 7 to 11 and columns 13 to 15,
+  # and assign it to the column ECONOMY ACTIVE
+  mutate(`ECONOMY ACTIVE` = rowSums(.[7:11]) + rowSums(.[13:15])) %>%
+
+  # Calculate the sum of values in columns 16 to 21 and assign it to the column AGED
+  mutate(`AGED` = rowSums(.[16:21])) %>%
+
+  # Calculate the sum of values in columns 3 to 21 and assign it to the column TOTAL
+  mutate(`TOTAL` = rowSums(.[3:21])) %>%
+
+  # Calculate the dependency ratio by dividing the sum of YOUNG and AGED by ECONOMY ACTIVE
+  mutate(`DEPENDENCY` = (`YOUNG` + `AGED`) / `ECONOMY ACTIVE`) %>%
+
+  # Select specific columns for the final output
+  select(`PA`, `SZ`, `YOUNG`, `ECONOMY ACTIVE`, `AGED`, `TOTAL`, `DEPENDENCY`)
+
+```
+
+simple feature data frame table must be on the left
+```{r}
+popdata2020 <- popdata2020 %>%
+  mutate_at(.vars = vars(PA, SZ), 
+          .funs = funs(toupper)) %>%
+  filter(`ECONOMY ACTIVE` > 0)
+
+
+mpsz_pop2020 <- left_join(mpsz, popdata2020,
+                          by = c("SUBZONE_N" = "SZ"))
+```
+
+
+```{r}
+tmap_mode("plot")
+qtm(mpsz_pop2020, 
+    fill = "DEPENDENCY")
+
+```
+
+```{r}
+tm_shape(mpsz_pop2020)+
+  tm_fill("DEPENDENCY",
+          n = 6,
+          style = "quantile",
+          palette = "Blues") +
+  tm_borders(alpha = 0.5)
+```
+
+
+===================================================================================
+
+```{R}
+sgpools <- read_csv("data/Hands-on_Ex08/aspatial/SGPools_svy21.csv")
+```
+
+```{R}
+sgpools_sf <- st_as_sf(sgpools, coords = c("XCOORD","YCOORD"), crs = 3414)
+```
+
+```{r}
+tmap_mode("view")
+```
+
+```{r}
+tm_shape(sgpools_sf)+
+tm_bubbles(col = "red",
+           size = 1,
+           border.col = "black",
+           border.lwd = 1)
+```
+
+```{r}
+tm_shape(sgpools_sf)+
+tm_bubbles(col = "red",
+           size = "Gp1Gp2 Winnings",
+           border.col = "black",
+           border.lwd = 1)
+```
+
+```{r}
+tm_shape(sgpools_sf)+
+tm_bubbles(col = "OUTLET TYPE", 
+          size = "Gp1Gp2 Winnings",
+          border.col = "black",
+          border.lwd = 1)
+```
+
+```{r}
+tm_shape(sgpools_sf) +
+  tm_bubbles(col = "OUTLET TYPE", 
+          size = "Gp1Gp2 Winnings",
+          border.col = "black",
+          border.lwd = 1) +
+  tm_facets(by= "OUTLET TYPE",
+            nrow = 1,
+            sync = TRUE)
+```
+
