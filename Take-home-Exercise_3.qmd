@@ -13,15 +13,17 @@ execute:
 ## Data preparation
 
 load libraries.
+
 ```{r}
 #| output: false
 #| code-fold: false
 pacman::p_load(jsonlite, tidygraph, ggraph, igraph,
                visNetwork, graphlayouts, ggforce, 
-               skimr, tidytext, tidyverse)
+               skimr, tidytext, tidyverse, widyr, kableExtra)
 ```
 
 Read MC3 data from Json file.
+
 ```{r}
 #| output: false
 #| code-fold: false
@@ -29,6 +31,7 @@ mc3_data <- fromJSON("data/MC3/MC3.json")
 ```
 
 Extracting edges
+
 ```{r}
 #| output: false
 #| code-fold: false
@@ -42,8 +45,9 @@ mc3_edges <- as_tibble(mc3_data$links) %>%
   filter(source!=target) %>%
   ungroup()
 ```
-Extracting nodes.
-"product_services" column value with "character(0)" are replaced with "unknown". "revenue_omu" with NA are replace with numerical value of '0'
+
+Extracting nodes. "product_services" column value with "character(0)" are replaced with "unknown". "revenue_omu" with NA are replace with numerical value of '0'
+
 ```{r}
 #| output: false
 #| code-fold: false
@@ -57,8 +61,11 @@ mc3_nodes <- as_tibble(mc3_data$nodes) %>%
 
 
 ```
+
 ## Initial Network Visualisation
+
 ```{r}
+#| output: false
 #| code-fold: true
 id1 <- mc3_edges %>%
   select(source) %>%
@@ -89,56 +96,112 @@ ggraph(layout = "fr") +
   theme_graph()
 
 ```
-Tokenisation of the 'product_services' column. Remove stop words and remove row with unknown services.
+
+## Pairwise_similarity on product_services (business)
+Tokenisation to product and services of each business.Regroup back after clean up at token level and assign a code 'biz_code' to every distinct services. Total nodes after clean up = 3894 (org_id_code)
 ```{r}
 #| code-fold: false
-token_nodes <- mc3_nodes %>%
-  unnest_tokens(word, product_services)
 
-stopwords_removed <- token_nodes %>% 
-  anti_join(stop_words) %>% 
-  filter (word != 'unknown')
+
+#Original id, service and code 3894 (un group)
+org_id_code <- mc3_nodes %>%
+  rename(company = id, business = product_services) %>%
+  unnest_tokens(word, business) %>%
+  anti_join(stop_words, by = "word") %>%
+  filter(word != 'unknown', word != 'related',word != 'products',word != 'product') %>%
+  group_by(company) %>%
+  arrange(company,word) %>%
+  summarise(business = paste(unique(word), collapse = " ")) %>%
+  mutate(biz_code = dense_rank(business )) %>%
+  ungroup()
+
+head(org_id_code, 100) %>%
+  kbl(caption = "Orginal nodes after clean up") %>%
+  kable_paper("hover", full_width = F) %>%
+  scroll_box(width = "100%", height = "500px")
 ```
-Count of unique words found in product_services field
+
+
+
+Performed group by biz_code. Nodes by unique biz_code = 3064 (grouped_biz_code)
+```{r}
+#| code-fold: false
+
+#grouped_biz_code (3064 unique service and code) lost id relationship
+grouped_biz_code <- org_id_code %>%
+  group_by(biz_code) %>%
+  summarise(business = paste(unique(business), collapse = " "), biz_code) %>%
+  distinct()
+
+head(grouped_biz_code, 100) %>%
+  kbl(caption = "Unique bussiness with assigned code") %>%
+  kable_paper("hover", full_width = F) %>%
+  scroll_box(width = "100%", height = "500px")
+```
+
+
+
+Redo Tokenisation base on grouped_biz_code and perform pairwise_similarity business
 ```{r}
 #| output: false
 #| code-fold: false
 
-token_nodes %>%
-  count(word, sort = TRUE) %>%
-  top_n(20) %>%
-  mutate(word = reorder(word, n)) %>%
-  ggplot(aes(x = word, y = n)) +
-  geom_col() +
-  xlab(NULL) +
-  coord_flip() +
-      labs(x = "Count",
-      y = "Unique words",
-      title = "Count of unique words found in product_services field")
+#Tokenisation of service words
+grouped_service_code_words <- grouped_biz_code %>%
+unnest_tokens(word, business) %>%
+anti_join(stop_words, by = "word") %>%
+count(biz_code, word) %>%
+ungroup()
 
+#pairwise_similarity of service words
+closest_org_service_code <- grouped_service_code_words %>%
+  pairwise_similarity(biz_code, word, n) %>%
+  filter(similarity >= 0.5) %>%
+  arrange(desc(similarity))
 ```
 
-## Trying to get representative token for each ID (work in progress)
-```{r}
-#| output: false
-#| code-fold: true
 
-# library("quanteda")
-# data_corpus_sotu <- readRDS(url("https://quanteda.org/data/data_corpus_sotu.rds"))
-# dfmat_sotu <- corpus_subset(data_corpus_sotu, Date > as.Date("1980-01-01")) |>
-#     tokens(remove_punct = TRUE) |>
-#     tokens_wordstem(language = "en") |>
-#     tokens_remove(stopwords("en")) |>
-#     dfm()
-# dfmat_sotu <- dfm_trim(dfmat_sotu, min_termfreq = 5, min_docfreq = 3)
-# 
-# tstat_sim <- textstat_simil(dfmat_sotu, dfmat_sotu[, c("fair", "health", "terror")],
-#     method = "cosine", margin = "features")
-# lapply(as.list(tstat_sim), head, 10)
+
+Build table to review business similarity (Check_closest_org_service_code). similar pair = 3887 (similar_pairs)
+```{r}
+#| code-fold: false
+
+#To review pairwise_similarity in table format
+Check_closest_org_service_code <- closest_org_service_code %>%
+  left_join(grouped_biz_code %>% select(biz_code, business) %>% rename(business_1 = business), by = c("item1" = "biz_code")) %>%
+  left_join(grouped_biz_code %>% select(biz_code, business) %>% rename(business_2 = business), by = c("item2" = "biz_code"))
+
+similar_pairs <- Check_closest_org_service_code %>%
+  filter(item1 < item2)
+
+head(Check_closest_org_service_code, 100) %>%
+  kbl(caption = "Preview of similar bussiness pair with similarity value more than 0.5") %>%
+  kable_paper("hover", full_width = F) %>%
+  scroll_box(width = "100%", height = "500px")
+```
+## Regroup and update business base on similar_pairs  (business)
+
+```{r}
+# Create an igraph object from the similar_pairs data frame
+graph <- graph_from_data_frame(similar_pairs, directed = FALSE)
+
+# Find the connected components
+components <- components(graph)$membership
+
+# Create a mapping of items to their corresponding component
+item_component_mapping <- data.frame(item = as.integer(V(graph)$name), component = components)
+
+# Merge the item_component_mapping with org_id_code
+simplified_grouped_service_code <- org_id_code %>%
+  left_join(item_component_mapping, by = c("biz_code" = "item")) %>%
+  mutate(simplified_biz_code = component) %>%
+  select(-component) %>%
+  distinct(simplified_biz_code, business)
 
 ```
 
 ## Community grouping (work in progress)
+
 ```{r}
 
 # # Create the graph object
@@ -167,4 +230,3 @@ token_nodes %>%
 #   visOptions(highlightNearest = TRUE)
 
 ```
-

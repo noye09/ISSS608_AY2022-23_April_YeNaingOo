@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -122,6 +93,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -137,69 +111,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">ISSS608 Ye Naing Oo</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html">
+    <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Inclass_ex04.html">
+    <a class="nav-link" href="./Inclass_ex04.html" rel="" target="">
  <span class="menu-text">In Class Exercises</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./Take-home-Exercise_1.html" aria-current="page">
+    <a class="nav-link active" href="./Take-home-Exercise_1.html" rel="" target="" aria-current="page">
  <span class="menu-text">Take Home Exercises</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./index.html">
+    <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">Visual Analytics Project</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Take Home Exercise 3</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Take-home-Exercise_3.html">Take Home Exercise 3</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
         <div class="sidebar-tools-main">
-    <a href="https://www.linkedin.com/in/naingoo-ye/" title="" class="sidebar-tool px-1"><i class="bi bi-linkedin"></i></a>
-    <a href="https://github.com/noye09" title="" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="https://www.linkedin.com/in/naingoo-ye/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="https://github.com/noye09" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Take-home-Exercise_1.html" class="sidebar-item-text sidebar-link">Take Home Exercise 1</a>
+  <a href="./Take-home-Exercise_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Take Home Exercise 1</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Take-home-Exercise_2.html" class="sidebar-item-text sidebar-link">Take Home Exercise 2</a>
+  <a href="./Take-home-Exercise_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Take Home Exercise 2</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Take-home-Exercise_3.html" class="sidebar-item-text sidebar-link active">Take Home Exercise 3</a>
+  <a href="./Take-home-Exercise_3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Take Home Exercise 3</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -208,7 +190,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link active" data-scroll-target="#data-preparation">Data preparation</a></li>
   <li><a href="#initial-network-visualisation" id="toc-initial-network-visualisation" class="nav-link" data-scroll-target="#initial-network-visualisation">Initial Network Visualisation</a></li>
-  <li><a href="#trying-to-get-representative-token-for-each-id-work-in-progress" id="toc-trying-to-get-representative-token-for-each-id-work-in-progress" class="nav-link" data-scroll-target="#trying-to-get-representative-token-for-each-id-work-in-progress">Trying to get representative token for each ID (work in progress)</a></li>
+  <li><a href="#pairwise_similarity-on-product_services-business" id="toc-pairwise_similarity-on-product_services-business" class="nav-link" data-scroll-target="#pairwise_similarity-on-product_services-business">Pairwise_similarity on product_services (business)</a></li>
+  <li><a href="#regroup-and-update-business-base-on-similar_pairs-business" id="toc-regroup-and-update-business-base-on-similar_pairs-business" class="nav-link" data-scroll-target="#regroup-and-update-business-base-on-similar_pairs-business">Regroup and update business base on similar_pairs (business)</a></li>
   <li><a href="#community-grouping-work-in-progress" id="toc-community-grouping-work-in-progress" class="nav-link" data-scroll-target="#community-grouping-work-in-progress">Community grouping (work in progress)</a></li>
   </ul>
 </nav>
@@ -218,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Take Home Exercise 3</h1>
+<h1 class="title">Take Home Exercise 3</h1>
 </div>
 
 
@@ -240,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(jsonlite, tidygraph, ggraph, igraph,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               visNetwork, graphlayouts, ggforce, </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               skimr, tidytext, tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               skimr, tidytext, tidyverse, widyr, kableExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Read MC3 data from Json file.</p>
 <div class="cell">
@@ -302,51 +285,1745 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">10</span>))<span class="sc">+</span></span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_graph</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<p><img src="Take-home-Exercise_3_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Tokenisation of the ‘product_services’ column. Remove stop words and remove row with unknown services.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>token_nodes <span class="ot">&lt;-</span> mc3_nodes <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, product_services)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>stopwords_removed <span class="ot">&lt;-</span> token_nodes <span class="sc">%&gt;%</span> </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span> (word <span class="sc">!=</span> <span class="st">'unknown'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Count of unique words found in product_services field</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>token_nodes <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">reorder</span>(word, n)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> word, <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Count"</span>,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Unique words"</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Count of unique words found in product_services field"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="trying-to-get-representative-token-for-each-id-work-in-progress" class="level2">
-<h2 class="anchored" data-anchor-id="trying-to-get-representative-token-for-each-id-work-in-progress">Trying to get representative token for each ID (work in progress)</h2>
+<section id="pairwise_similarity-on-product_services-business" class="level2">
+<h2 class="anchored" data-anchor-id="pairwise_similarity-on-product_services-business">Pairwise_similarity on product_services (business)</h2>
+<p>Tokenisation to product and services of each business.Regroup back after clean up at token level and assign a code ‘biz_code’ to every distinct services. Total nodes after clean up = 3894 (org_id_code)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Original id, service and code 3894 (un group)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>org_id_code <span class="ot">&lt;-</span> mc3_nodes <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">company =</span> id, <span class="at">business =</span> product_services) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, business) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="st">"word"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(word <span class="sc">!=</span> <span class="st">'unknown'</span>, word <span class="sc">!=</span> <span class="st">'related'</span>,word <span class="sc">!=</span> <span class="st">'products'</span>,word <span class="sc">!=</span> <span class="st">'product'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(company) <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(company,word) <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">business =</span> <span class="fu">paste</span>(<span class="fu">unique</span>(word), <span class="at">collapse =</span> <span class="st">" "</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">biz_code =</span> <span class="fu">dense_rank</span>(business )) <span class="sc">%&gt;%</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(org_id_code, <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"Orginal nodes after clean up"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>(<span class="st">"hover"</span>, <span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">"100%"</span>, <span class="at">height =</span> <span class="st">"500px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
+<table class="lightable-paper lightable-hover table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Orginal nodes after clean up</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">company</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">business</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">biz_code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1 AS Marine sanctuary</td>
+<td style="text-align: left;">accessories beads bits craft crafty diy doll embellishment funfoam kits paper ribbons scrapbook shapes stencils styrofoam tools wood</td>
+<td style="text-align: right;">182</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1 and Sagl Forwading</td>
+<td style="text-align: left;">logistics solutions total</td>
+<td style="text-align: right;">2881</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2 Flounder ОАО Consultants</td>
+<td style="text-align: left;">beverages canned condiment dried drinks eat fish food frozen leaves meat mix noodles pickled pouches preserved ready rice sauce seafood snacks spices tea</td>
+<td style="text-align: right;">1439</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2 Limited Liability Company</td>
+<td style="text-align: left;">aquatic canning manufacturing processing seafood</td>
+<td style="text-align: right;">990</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3 Limited Liability Company</td>
+<td style="text-align: left;">apparel discount fabrics fibres garments greige home market segments textiles yarns</td>
+<td style="text-align: right;">885</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3 Ltd. Liability Co Transit</td>
+<td style="text-align: left;">european food specialty</td>
+<td style="text-align: right;">2475</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3 SE &amp; Son's</td>
+<td style="text-align: left;">anodes chemicals industry plating worldwide</td>
+<td style="text-align: right;">848</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4 Limited Liability Company Seaport</td>
+<td style="text-align: left;">cold freezing providing services storage</td>
+<td style="text-align: right;">2055</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5 Flounder S.p.A. Transport</td>
+<td style="text-align: left;">engineering ferrous industry iron metals sector services steel</td>
+<td style="text-align: right;">2424</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5 Limited Liability Company</td>
+<td style="text-align: left;">3 adhesive adhesives agents chemicals combination development environmentally friendly glue hot instant involved melt performance polymer production sales special specialises trade</td>
+<td style="text-align: right;">39</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7 GmbH &amp; Co. KG</td>
+<td style="text-align: left;">blades cast cutlery cutting edge flatware hand handsaws including iron kitchen machines manufacture metal nonpowered nonprecious pans plated pots precious sawing skillets tools type types utensils</td>
+<td style="text-align: right;">1482</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">7 S.A. de C.V. Shipping</td>
+<td style="text-align: left;">bar carbon reinforcing rounds squares steel</td>
+<td style="text-align: right;">1303</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">8 S.A. de C.V.</td>
+<td style="text-align: left;">antibodies biopharmaceuticals proteins recombinant</td>
+<td style="text-align: right;">859</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8 SE Marine life</td>
+<td style="text-align: left;">gloves niche</td>
+<td style="text-align: right;">2776</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9 Charter Boat Plc Overseas</td>
+<td style="text-align: left;">fish</td>
+<td style="text-align: right;">2542</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9 GmbH &amp; Co. KG Solutions</td>
+<td style="text-align: left;">accessories conveyors fire range valves</td>
+<td style="text-align: right;">214</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9 Shark S.A. de C.V. Brothers</td>
+<td style="text-align: left;">ang bean bing bowls dzu flour geum ice jelly juk kan ki paste pat porridge processed red rice shaved su sweet yo</td>
+<td style="text-align: right;">809</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Acevedo-Hall</td>
+<td style="text-align: left;">snapchat spectacles</td>
+<td style="text-align: right;">3042</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Acosta Inc</td>
+<td style="text-align: left;">ability accessories allowed apparel aspects assortment balance brands capitalize category comprising core customers decades derive design designing designs development distribution dynamics excelled exclusivity experience fashion focuses footwear forward global globe handbags house industry international kids labels maintain manages manufacturing market men's operations presence prevailing principles private producing production provide reputation responsible round sellers service specializes strong styles trends variety wide widespread women</td>
+<td style="text-align: right;">70</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Acosta, Proctor and Meyers</td>
+<td style="text-align: left;">beef chicken cream dairy deep diced fish freeze frozen ice jams jellies juices lamb meats pork seafood sliced vegetables yogurt</td>
+<td style="text-align: right;">1407</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Acosta, White and Patel</td>
+<td style="text-align: left;">chemicals industrial inorganic</td>
+<td style="text-align: right;">1951</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adair - SE Transport</td>
+<td style="text-align: left;">bags leather</td>
+<td style="text-align: right;">1245</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adair Ltd. Liability Co</td>
+<td style="text-align: left;">aftermarket automotive covers customizing electronic enclosures fobs frames hitch including key license manufacturing plastic plate trailer</td>
+<td style="text-align: right;">507</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adair S.A. de C.V.</td>
+<td style="text-align: left;">cephalopod cuttlefish frozen octopus soft squid</td>
+<td style="text-align: right;">1903</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adams Group</td>
+<td style="text-align: left;">fish range seafood</td>
+<td style="text-align: right;">2585</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adams-Hicks</td>
+<td style="text-align: left;">clothing footwear</td>
+<td style="text-align: right;">2012</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adkins LLC</td>
+<td style="text-align: left;">frozen seafood</td>
+<td style="text-align: right;">2734</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adkins, Garcia and Perkins</td>
+<td style="text-align: left;">companies distributes electric electronic frequency hydraulic lines power stations thermal transformer</td>
+<td style="text-align: right;">2091</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adkins, Williamson and Daniels</td>
+<td style="text-align: left;">boats landcraft sailboards sails</td>
+<td style="text-align: right;">1523</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adkins-Villanueva</td>
+<td style="text-align: left;">harnesses wire</td>
+<td style="text-align: right;">2798</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adriatic Nautical CJSC Holdings</td>
+<td style="text-align: left;">act agent business cargo class clearing consigned customs facilities forwarding freight infrastructure insurance land logistics marine ministry ocean operating property sea services shipment tourism transport transportation type voyage warehousing</td>
+<td style="text-align: right;">287</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adriatic Seabass LC Transportation</td>
+<td style="text-align: left;">brokerage complete custom forwarding freight logistic providing service shipping solution world</td>
+<td style="text-align: right;">1634</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adriatic Catch Ges.m.b.H. Forwading</td>
+<td style="text-align: left;">food</td>
+<td style="text-align: right;">2619</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adriatic Catch Ges.m.b.H. Marine biology</td>
+<td style="text-align: left;">consumer</td>
+<td style="text-align: right;">2167</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adriatic Catch Ltd. Liability Co</td>
+<td style="text-align: left;">machine tools</td>
+<td style="text-align: right;">2886</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adriatic Catch S.A. de C.V.</td>
+<td style="text-align: left;">analysis technical testing</td>
+<td style="text-align: right;">789</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adriatic Catch SRL Seal</td>
+<td style="text-align: left;">construction dedicated engineering key plants plastics unit</td>
+<td style="text-align: right;">2154</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adriatic Mackerel Ges.m.b.H. Worldwide</td>
+<td style="text-align: left;">boats complete elements laminate models moulds operates produces subcontractor</td>
+<td style="text-align: right;">1520</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adriatic Mackerel N.V. Transport</td>
+<td style="text-align: left;">appetizers aromatic asparaguses caviars chilean clams cockles cods crabs cuttlefishes filets fish fruits green hearts herbs mackerel maizes mangoes mussels octopuses oysters packaged palm papayas peppers pineapples prawns rambutans razors sauce sauces seafood seasonings spices spicy squids stuffed sweet truffles tunas vegetables winkles</td>
+<td style="text-align: right;">902</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adriatic Squid AS Holdings</td>
+<td style="text-align: left;">canned seafood</td>
+<td style="text-align: right;">1775</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adriatic Squid Limited Liability Company Freight</td>
+<td style="text-align: left;">cured fish fresh frozen seafoods</td>
+<td style="text-align: right;">2275</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adriatic Squid Ltd. Liability Co</td>
+<td style="text-align: left;">finfish footwear including seafood shellfish shrimp</td>
+<td style="text-align: right;">2535</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adriatic Tuna GmbH &amp; Co. KG</td>
+<td style="text-align: left;">forwarding freight integrated operation warehouse</td>
+<td style="text-align: right;">2686</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adriatic Tuna Seabass BV Transit</td>
+<td style="text-align: left;">petfood tuna</td>
+<td style="text-align: right;">2975</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Agua N.V. Marine life</td>
+<td style="text-align: left;">2 pole turbogenerators</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Aguamarina Beach AB Industrial</td>
+<td style="text-align: left;">artichokes beverages bread cheese coffee crumbs desserts gnocchi hearts mediterranean oil olive olives palm pasta pickled rice seafood soups specialties spices tomatoes tortellini vinegar</td>
+<td style="text-align: right;">1056</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Aguamarina Limited Liability Company</td>
+<td style="text-align: left;">fresh frozen seafood</td>
+<td style="text-align: right;">2720</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Aguamarina S.A. de C.V.</td>
+<td style="text-align: left;">compounding equipment extruding measuring pelletizing</td>
+<td style="text-align: right;">2131</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Aguilar LLC</td>
+<td style="text-align: left;">motor vehicle</td>
+<td style="text-align: right;">2941</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Aguilar, Smith and Perez</td>
+<td style="text-align: left;">cream fish food frozen fruit ice meals pastry ready seafood vegetables</td>
+<td style="text-align: right;">2254</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Albertine Rift Company Enterprises</td>
+<td style="text-align: left;">footwear</td>
+<td style="text-align: right;">2669</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Albertine Rift NV Family</td>
+<td style="text-align: left;">alaska chum cod cucumber fish hake pc pink pollock pop red salmon sea shellfish</td>
+<td style="text-align: right;">659</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alexander, Sullivan and Grant</td>
+<td style="text-align: left;">eco equipment friendly industry machinery nonferrous plant steel supply</td>
+<td style="text-align: right;">2393</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ali, Barber and French</td>
+<td style="text-align: left;">decorative materials wood</td>
+<td style="text-align: right;">2305</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ali, Castro and Cruz</td>
+<td style="text-align: left;">applications cement chemical commercial communication complexes distribution energy fertilizer furnace including independent industrial locomotive media metering meters mills petro plants power purpose rectifier residential solutions special static steel support traction transformers utilities</td>
+<td style="text-align: right;">954</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Allen Ltd</td>
+<td style="text-align: left;">bass fresh sea tuna yellowfin</td>
+<td style="text-align: right;">1355</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Allen PLC</td>
+<td style="text-align: left;">fish materials plastics resins seafood</td>
+<td style="text-align: right;">2574</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Allen, Thomas and Jackson</td>
+<td style="text-align: left;">engines gearboxes vehicles</td>
+<td style="text-align: right;">2428</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Allen-Brown</td>
+<td style="text-align: left;">materials plastic resins</td>
+<td style="text-align: right;">2908</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Allen-Guzman</td>
+<td style="text-align: left;">accessories apparel clothing</td>
+<td style="text-align: right;">146</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Allen-Robles</td>
+<td style="text-align: left;">accessories equipment inspection machine precision surface tooling tools</td>
+<td style="text-align: right;">224</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alvarado, Jensen and Brown</td>
+<td style="text-align: left;">acid based car cement cements coating coatings coats deck decorative duty external finishes floor flooring hardeners heavy levelling linings mortars park potable resistant skim tank water waterproofing</td>
+<td style="text-align: right;">262</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alvarado-Oliver</td>
+<td style="text-align: left;">adhesive coating paint</td>
+<td style="text-align: right;">408</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alvarado-Sanchez</td>
+<td style="text-align: left;">anti compounds emulsions fluids foam greases miscellaneous silicone</td>
+<td style="text-align: right;">855</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alvarez, Harrell and Zimmerman</td>
+<td style="text-align: left;">food</td>
+<td style="text-align: right;">2619</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alvarez-Cabrera</td>
+<td style="text-align: left;">carbon coils flat painted ppgi pre sheets steel strips tubes welded</td>
+<td style="text-align: right;">1809</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alvarez-Rogers</td>
+<td style="text-align: left;">aerosols paint putties touch up's</td>
+<td style="text-align: right;">499</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Amerigo River S.p.A. Express</td>
+<td style="text-align: left;">assistance business change coaching development implementation improvement management operational organizational services skills strategy support technology</td>
+<td style="text-align: right;">1115</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Amur Estuary Pic Cargo</td>
+<td style="text-align: left;">air compressor hand hardware hydraulics pressure tools trailer washers welding</td>
+<td style="text-align: right;">609</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Amur GmbH &amp; Co. KG</td>
+<td style="text-align: left;">foodstuff gelatines ingredients</td>
+<td style="text-align: right;">2666</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Amur Holdings Coral Reef</td>
+<td style="text-align: left;">food merchandise</td>
+<td style="text-align: right;">2645</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ancla Azul SRL Coral</td>
+<td style="text-align: left;">plastic</td>
+<td style="text-align: right;">2978</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ancla Azul ОАО Holdings</td>
+<td style="text-align: left;">accessories alterations basic fabric fabricating fabrics fiber fibers finishing food frozen hemming knitting lengthening letting logistics marketing notions piece preparation refrigerated services shortening taking thread weaving yarns</td>
+<td style="text-align: right;">126</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ancla Marina Limited Liability Company</td>
+<td style="text-align: left;">leather shoes</td>
+<td style="text-align: right;">2865</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ancla Marina Ltd. Liability Co Harbor</td>
+<td style="text-align: left;">courier providing services specializes trucking</td>
+<td style="text-align: right;">2235</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ancla Marina N.V. Brothers</td>
+<td style="text-align: left;">food</td>
+<td style="text-align: right;">2619</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ancla de Oro &amp; AS Carriers</td>
+<td style="text-align: left;">meat</td>
+<td style="text-align: right;">2914</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ancla de Oro AB</td>
+<td style="text-align: left;">automotive industry systems wiring</td>
+<td style="text-align: right;">1201</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ancla de Oro Pelican</td>
+<td style="text-align: left;">alaska blocks bulk claws clusters cod cooked crab crawfish dungeness fillet fillets gutted head iqf ivp king legs pacific pollock portions red salmon shatterpacked snow sockeye tilapia</td>
+<td style="text-align: right;">657</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ancla del Este AG</td>
+<td style="text-align: left;">bioactive collagen fish ovalbumin peptide soybean</td>
+<td style="text-align: right;">1461</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ancla del Este LC</td>
+<td style="text-align: left;">collagen gelatin supplements</td>
+<td style="text-align: right;">2062</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ancla del Este LLC</td>
+<td style="text-align: left;">fish seafoods yarns</td>
+<td style="text-align: right;">2593</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ancla del Este Sagl</td>
+<td style="text-align: left;">bottom catfish clams cod crab exotics farmed fish fishes flounder halibuts oysters pollock rockfish salmon shellfish shrimp sole tilapia tuna whiting</td>
+<td style="text-align: right;">1570</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ancla del Este Sp Fish</td>
+<td style="text-align: left;">distribution fishing operation seafood vessels</td>
+<td style="text-align: right;">2345</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ancla del Este Starfish</td>
+<td style="text-align: left;">adults basic blended color control cotton deliver dyeing elevated fabric fabrications finishing garments hand juvy line providing seamed shrinkage technology toddler top tubular youth</td>
+<td style="text-align: right;">469</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ancla del Este ОАО</td>
+<td style="text-align: left;">seafood</td>
+<td style="text-align: right;">3023</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ancla del Mar Express</td>
+<td style="text-align: left;">appliances applicator auto beauty ceramic components cosmetic design equipment filling fine hot lamination machine manufacturing melt range specialises ultrasonic wide</td>
+<td style="text-align: right;">917</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ancla del Mar Pic Worldwide</td>
+<td style="text-align: left;">fish seafoods</td>
+<td style="text-align: right;">2592</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Andaman Jetty S.A. de C.V. Marine ecology</td>
+<td style="text-align: left;">accessories extensions eyelash eyelashes false focuses strip</td>
+<td style="text-align: right;">226</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Anderson Group</td>
+<td style="text-align: left;">arc auxiliary casting ccm continuous eaf electric food furnaces ladle lf machines melt mills refining rolling shop systems</td>
+<td style="text-align: right;">1016</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Anderson Ltd</td>
+<td style="text-align: left;">business diving gas maritime measuring personal protection services solutions system technologies technology transport</td>
+<td style="text-align: right;">1686</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Anderson, Gross and Becker</td>
+<td style="text-align: left;">accessories home office personal</td>
+<td style="text-align: right;">235</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Anderson, Russell and Allen</td>
+<td style="text-align: left;">food ingredients</td>
+<td style="text-align: right;">2636</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Anderson, Tucker and Williams</td>
+<td style="text-align: left;">valve</td>
+<td style="text-align: right;">3060</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Anderson-Marsh</td>
+<td style="text-align: left;">adhesives chemicals industrial sealants surface treatments</td>
+<td style="text-align: right;">442</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Anderson-Nash</td>
+<td style="text-align: left;">casting iron</td>
+<td style="text-align: right;">1864</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Anderson-Olson</td>
+<td style="text-align: left;">fish</td>
+<td style="text-align: right;">2542</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Andhra Pradesh BV Marine life</td>
+<td style="text-align: left;">based commerce wholesaler</td>
+<td style="text-align: right;">1333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Andhra Pradesh CJSC Merchants</td>
+<td style="text-align: left;">automatic cutting systems</td>
+<td style="text-align: right;">1164</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Andhra Pradesh Corporation Holdings</td>
+<td style="text-align: left;">accessories bags diving fish fishing heads hooks inshore line lure monofilament skirts tackle terminal trolling</td>
+<td style="text-align: right;">172</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>
+<p>Performed group by biz_code. Nodes by unique biz_code = 3064 (grouped_biz_code)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#grouped_biz_code (3064 unique service and code) lost id relationship</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>grouped_biz_code <span class="ot">&lt;-</span> org_id_code <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(biz_code) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">business =</span> <span class="fu">paste</span>(<span class="fu">unique</span>(business), <span class="at">collapse =</span> <span class="st">" "</span>), biz_code) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(grouped_biz_code, <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"Unique bussiness with assigned code"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>(<span class="st">"hover"</span>, <span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">"100%"</span>, <span class="at">height =</span> <span class="st">"500px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
+<table class="lightable-paper lightable-hover table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Unique bussiness with assigned code</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">biz_code</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">business</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">0.5a 1.5a 1a 24w 2a 5v 90 adapter charger desktop driver gaming interchangeable keyboard laptop led lighting machine massage medical metal mouse power usb</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">000 1872 27 4 alligator aluminium analysers analyzers balers based bespoke business cable car casting complete container de design equipment falls ferrous freelance granulators history hydraulic including ingot loaders machinery machines main manufacturer material mcintyre metal nottingham pollution processing range reconditioned recycling researcher sales scrap services shears source support system systems tilters unloaders worldwide</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">0302.91 0302.99 0304 alaska chalcogramma chilled edible excluding fillets fish fresh meat offal pollack subheadings theragra</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">0302.91 0302.99 0304 australasicus chilled edible excluding fillets fish fresh japonicus mackerel meat offal scomber scombrus subheadings</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">0302.91 0302.99 0304 brisling chilled edible excluding fillets fish fresh meat offal pilchardus sardina sardinella sardines sardinops spp sprats sprattus subheadings</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">0303.91 0303.99 0304 albacares edible excluding fillets fish frozen meat offal subheadings thunnus tunas yellowfin</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">1 20 60 alfred bacteriology collection controls devices esr hb latex lc line modern penok penol pn roller sidecar swab test tests</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">1 250 27 aluminum auxiliary cleaning complex components container cranes device electrical engineered equipment finished forklift grade handling hydraulic injection lifting loaders machines manipulators materials molding pallets platforms roads rollers scissors season semi sidewalks steel structures tracks trailer trolley winter</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">1 4 5 6 7 automatic auxiliary class cvt fwd gearbox hybrid liter medium mini rwd speed transmission vehicles</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">1 800 alloy cast gram grams precision weight zinc</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">1 accessories art arts backpacks binders board boards book books calculators calendars cards clips coloring composition construction cooler correction covers crafts crayons desk document dry envelopes erase erasers fashion fatbooks foam glue highlighters holders home including index lunchbags mailing markers memo notebooks offers pads paper pencil pencils pens pins plastic portfolios poster project punches push range rulers scissors sharpeners staplers subject supplies tape totes wide</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">1 bound cream crystal drink drinking fish gum ice jelly konjac milk papaya pudding refined seafood soft sorbet stabilizer suspension thickening water wine yoghurt</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">10 100 acetyl acid alpisarin ammonium arteether artemether artemisinin artesunate baccatin beta bp bromide butyl camptothecin coenzyme colchicine dab de digoxin dihcl enoxolone ep forskohlin glycyrrhetinic glycyrrhizinate hcl herpes hydrobromide hyoscine hyoscyamine jp machinery mag manufacturing metalworking methoxsalen nicotine noscapine ohimbine organizations outsourcing paclitaxel piperine podophyllum private public quinidine quinine reserpine resin salts sennosides service solutions sulphate tartarate thiocolchicoside u.s.s.r.p usp xanthotoxin</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td style="text-align: left;">100 280 320 4 80 acid alka bloom cold concentrations extraction flavoured food gelatine gelatines gold grade granulometries hydrolysed instant leaf line liquid lumps mesh pharmaceutical platinum silver soluble technical type wine</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">100 anchovies black green manzanilla olives peppers percent recipes spanish stuffed</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">100,000 200,000 60,000 80,000 africa australia bulk capacities cape cargo cargoes cement chemical coal continent conventional countries crude dangerous dry dwt east fertilizers fleet gas gasoline grain guatemala handymax hbi heavy including india iron lift liner methanol middle naphtha north offers oil oils operates ore p.g pacific palm panamax petcoke ports ranging salt sand scrap services silica sized south suezmax sugar sulphur tankers tramp transportation transporting vessels vlccs</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">110v 220v 3 air chilled coils commercial concealed condensing ducted dx evaporator fan handlers include mount portable residential series ton unit units universal wall water window</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">18</td>
+<td style="text-align: left;">12 84 automotive card cards convenience countertop custom display displays drug fixtures floor greeting grocery hold hundreds literature mass merchandise merchandising pockets racks sorts specific store stores wire</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">12 axle bearing bridge components gear heavy internal mechanical reduction ring seals speed steyr transmission truck wheel</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">120 370ml 580ml 6 9 asparagus canned diamir fa fruits hood light marmelades meals mushrooms ol olive pepper piq ready seafood tuna vegetables ventresca</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">13 ac chassis condensing consoles custom freelance heat horizontal list low packaged profile ptac pumps remote replacement researcher seer source stacked unit units vertical</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">22</td>
+<td style="text-align: left;">150 advanced annual approvals assembly automatic ce certificates completed erp halogen lamps led lights line million output pieces production reach series sets type</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">16 braided complete cord cordage cords cotton diamond line nylon polyester polyethylene polypropylene rayon rope ropes round smooth solid specializing synthetics twine twisted</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">24</td>
+<td style="text-align: left;">1604 fish heading minced n.e.c pieces preparations prepared preserved</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">25</td>
+<td style="text-align: left;">1974 acquired affected assembly bar businesses closer crisis development direction distribution evolutions faster feeder field fine future hydraulic hydrobar ingenious inventing invests jura leader loaders machine machining makers markets mechanical medium peripherals philippe position precision publicly pushing reached region regional respond scheurer sized storskogen swedish technician tool traded tuned watch worldwide</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">26</td>
+<td style="text-align: left;">1999 catalogs children's clothing launched mail men's retailer sells site wear web women's</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">27</td>
+<td style="text-align: left;">2 200 24 atmos black box cans care cleaning collab crates crep cure era eraser flat footwear kicks kilates kit laces limited mark ml multi nba nice pack pen pill pre protect quantities refill round shoe sneaker spray team treated trees tube ultimate white wipes â</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">28</td>
+<td style="text-align: left;">2 3 360 3ds 4 accessories action adventure apparel blu board cards console consoles content digital ds dvds family fighting figurines games guides hardware headsets keyboards mice music nintendo online pc playing playstation portable posters puzzle racing ray replicas role shooter simulation sport statues strategy tickets toys trading video vita wii xbox</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">29</td>
+<td style="text-align: left;">2 3 caps containers cutting easy lithography metal piece plate traditional twist varnishing</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">30</td>
+<td style="text-align: left;">2 pole turbogenerators</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">31</td>
+<td style="text-align: left;">200 blanca canada canadians check companies company employs fisheries fishing freelance head job john largest liability limited management nataagnaq newfoundland nunavut office offshore opportunities playa researcher source st</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">2202 3303 411 441 551 553 fume metal powder silica silicon</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">33</td>
+<td style="text-align: left;">24 ball carat correction erasers gel items lead pens promotional refills scales sharpeners stationery</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">34</td>
+<td style="text-align: left;">25 biaxially bopp cast cpp degradable film films gba gbc gbp gcl gcm gcm25m gec12m gec12s green guolene metallized oriented polypropylene</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">35</td>
+<td style="text-align: left;">250 acid advisory alloyed alloys automotive cast casting chemical construction development finishing fittings heat highly including industries industry iron kilogram low material offers post process prototype pump purpose range research resistant service special steel surface treatment und valves weight</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">36</td>
+<td style="text-align: left;">3 3.0 accessories adapters card converter devices docking hub lan media multimedia ports reader sharing station stations thunderbolt travel usb</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">37</td>
+<td style="text-align: left;">3 99 acid agro agrochemical aluminium bases bulk chloral chloride chloroacetylechloride drugs dye ethyl fast formate formic formulations fungicides herbicides hexahydrate including intermediates methyl minimum nitrophthalic nitrophthalonitrile percent pesticides pharmaceuticals</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">38</td>
+<td style="text-align: left;">3 acids botanical extracts fatty omega probiotics</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">39</td>
+<td style="text-align: left;">3 adhesive adhesives agents chemicals combination development environmentally friendly glue hot instant involved melt performance polymer production sales special specialises trade</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">40</td>
+<td style="text-align: left;">3 cod fish liver oil omega shark</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">41</td>
+<td style="text-align: left;">350 400 6 750 approximately boutiques brand departmental exclusive including john lifestyle multi operates outlets players stores wills</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">42</td>
+<td style="text-align: left;">3501 animal casein coloured derivatives excluding gelatin glues heading including isinglass origin rectangular sheets surface</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">43</td>
+<td style="text-align: left;">3d adstra arm cabinetry cabinets cart chairs charting clinics compressors computers cuspidors delivery den dental equipment equus film furniture imaging instrument intraoral lighting management microscopes mobile nitrous operatory oxide packages panoramic portable practice precision processors pumps ray reception refurbished seiler software sterilizers stools systems tech units vacuum washer</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">44</td>
+<td style="text-align: left;">3d anti applications climate components control crystal decorations diffuser display displays films flat graphic hygiene incorporating interactive liquid manufacturing microbial mould optical panel panels precision printing properties screen sector suitable systems touch</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">45</td>
+<td style="text-align: left;">4pl air brokerage bulk cargo commerce contract controlled customs distribution engineering forwarding freight include information insurance international land load logistics management manufacturing multimodal national ocean packing pallet preparation reverse services shared shipments solutions stock temperature transport transportation warehousing</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">46</td>
+<td style="text-align: left;">5 automatic axis bridge changers horizontal machines milling pallet production speed tapping vertical</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">47</td>
+<td style="text-align: left;">5 bacon biscuits chewing convenience corn crocs dishes fish ham palette pasta pizza poultry ready sandwiches sausages seafood serve snackies sticks strips succulent tasty wide</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">48</td>
+<td style="text-align: left;">5 beans bio black borlotti butter chapped cherry chick chilly crushed double eye flavorings fruits garlic green herbs hill lentils mix onion paste peas peeled pizza sauce tomato tomatoes vegetables velvety white</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">500 chain company customers delivers germany largest migros parent party stores supermarket switzerland switzerland's</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">50</td>
+<td style="text-align: left;">500w amplifiers cim commutation components controllers core customer dc drive electronic encoders flat gears iron ironless mechanical mim motors output planetary position power resolvers sensors servo solutions special specific spur tachos tech winding</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">51</td>
+<td style="text-align: left;">6 backpack bag business compu computer cooler messenger polyester portable sling sports tote trail travel</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">52</td>
+<td style="text-align: left;">600 asprin bayer bone calcium capsules care cats claw devil's diet dogs electrolyte formulas gemini herbal joint liposafe minerals replenishment selenium supplement tablets women's yeast</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">53</td>
+<td style="text-align: left;">63 77 83 92 action female laminate lock sv taper tilt valves vertical</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">54</td>
+<td style="text-align: left;">8 air apl arabia atlantic ccl cement container continental freelance freight line logistics mixer ocean pacific pal project researcher source units</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">55</td>
+<td style="text-align: left;">8 balls beer cubes drives effects environment flat items magic memory picture prism protection recycle rubik's sliding tangles usb</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">56</td>
+<td style="text-align: left;">80 camp developmental disabilities electric freelance gas ground heaters heating manufacturer nonprofit ofsolar pool pools private researcher solar source summer swimming system systems thermal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">57</td>
+<td style="text-align: left;">8903 boats canoes heading inflatable n.e.c pleasure rowing sports vessels yachts</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">58</td>
+<td style="text-align: left;">900 adapters cables cords coupler couplers distribution hybrid indoor lc lszh mt panels patch producing pvc range rated riser rj specialized st standard style wide</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">59</td>
+<td style="text-align: left;">a.o automation chinese class electro european leading manufacturers offering represents specialises suppliers technology</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">60</td>
+<td style="text-align: left;">a5 airpen blue computer diagrams electronic format handwritten hundred ink kga memory normal notebook notes pages paper pen personal sketches storage stores uploaded ventures water writes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">61</td>
+<td style="text-align: left;">aaa albacore arkshell bighead chuka clam crab croaker cut escolar fillet fish flying frozen fulvescen ground half hamachi hiyashi ika items ivp izumidai korean loin mackerel madako meat mussel nobashi octopus oyster pike poke pollack ribbon saku sansai sea seafood seaweed shell shisamo slice snail snow squid squirt steamed sushi tako tiny tobiko tuna wakame yellow</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">62</td>
+<td style="text-align: left;">aalesund agency airfreight airlines belgium break broker brokerage bulk bunker cargo cargoes chartering chilled consignments consolidation container containers crew customs declaration delivery destinations direct discharging door dry eastern europe exports extended france frozen germany handle handles handling imports including items kinds land lay loading lufthavn netherlands norway offers oil operates operating planning port ports project racks sea services ship shipchandler shipping skutvika stevedoring storage stores terminal transfer transport transportation transshipment truck trucking vessels vigra worldwide</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">63</td>
+<td style="text-align: left;">aasicp analysis australian certified coal freelance materials minerals reference researcher source standards supplier</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">64</td>
+<td style="text-align: left;">abalone anchovy blowfish bluefish butter capelin catfish caviar clam cockle conch crab crayfish crustacean cucumber cuttlefish dogfish echinoderms eel fish flounder flying grouper haddock kingfish lobster lumpfish mollusks mussel octopus oyster periwinkle prawns roe salmon scallop sea shad shellfish shrimp snail squid urchin</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">65</td>
+<td style="text-align: left;">abalone cactus dry ezo fish flounder food foods frozen ingredients scallop seasonal yellowtail</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">66</td>
+<td style="text-align: left;">abalone hake pink prawns seafoods</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">67</td>
+<td style="text-align: left;">abalone mollusc preparations prepared preserved</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">68</td>
+<td style="text-align: left;">abc advanced aim aluminum applications board bonded circuit class copper development electronic foils freelance interconnect materials performance printed production researcher source world</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">69</td>
+<td style="text-align: left;">abi ach automated broker cargo clearing consular credit destinations documentation door export freelance house insurance interface letters researcher service shipment source</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">70</td>
+<td style="text-align: left;">ability accessories allowed apparel aspects assortment balance brands capitalize category comprising core customers decades derive design designing designs development distribution dynamics excelled exclusivity experience fashion focuses footwear forward global globe handbags house industry international kids labels maintain manages manufacturing market men's operations presence prevailing principles private producing production provide reputation responsible round sellers service specializes strong styles trends variety wide widespread women</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">71</td>
+<td style="text-align: left;">abrasive abrasives accessories air bases batteries bead bench benches blanks books brushes buffs bur burs busch carbide carving casting chairs cleaners cleaning cloth compounds compressors cratex crucibles cup cutters decorative diamond display drawing dressing drills electroplating engraving equipment felts files filters finishes flap flasks flex frames gemstones grain grinders hammers handpieces hears hoses imaging inside investing kits laps lighting machines mallets mandrels measuring mills nippers packaging photography pins pliers polishers polishing power range reamers rifflers ring rolling safety sandblasting saws scrapers scribers setting shafts shop soldering solutions specialises stamps stands stone stones stringing supplies supplying taps tools torches tumblers tweezers ultrasonic vacuums videos watch wheel wheels wide wildfowl</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">72</td>
+<td style="text-align: left;">abrasive aluminum ceramic fused industries line oxides refractory vast</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">73</td>
+<td style="text-align: left;">abrasive ash concrete control equipment handling material multi pollutant systems</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">74</td>
+<td style="text-align: left;">abrasive brakes building cnc controlled cutting guillotine including machines offers plate press presses pressure pumps robotized routing shears ship systems tools waterjet waterjets</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">abrasives agglomerates brushes ceramic cutting epoxy equipment granites marbles mastics surfaces systems technical tools treatments</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">76</td>
+<td style="text-align: left;">abrasives applications based expendable quality recyclable slag specialty variety wide</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">abrasives bars bits boring boxes broaches cabinets carbide chucks collets coolant counterboxes countersinks cutters cutting drill fasteners files grinding handtools heads holders indexable instruments lathe measuring mills precision reamers rotary saws shop supplies systems tapping tool tooling tools vises wheels</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">78</td>
+<td style="text-align: left;">abrasives cabinets canal cements dental equipment hand laboratory ray resins root stones units waxes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">79</td>
+<td style="text-align: left;">abs accessories aerobic amounts apparel bikes boxing catalog dry equipment exercise fitness furnishings groceries hardware home house kits lifting limited line lines machines mail massagers media merchandise pilates steppers steps strength television trainers training trampolines treadmills vibration wares weight yoga</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">80</td>
+<td style="text-align: left;">abs acrylonitrile butadiene chloride hips impact nylons pa pc pe pes pet plastic poly polyamides polycarbonate polyester polyethylene polypropylene polystyrene polyurethanes polyvinylidene pp ps pu pvc pvdc saran styrene terephthalate vinyl</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">81</td>
+<td style="text-align: left;">absorbent ammonium anhydrous antimony bicarbonate bone caffeine chloride diphyenyl ethyl glue guanidine gum lead mono oclansorb oil phosphate phosphorus potassium red rosin sodium sulphate tartrate trisodium xanthate zirconium</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">82</td>
+<td style="text-align: left;">absorber applications automation bike components compressor comprise comprising connecting consumer cum electronic engine forging heat hubs include including industrial insulin integration lens machining medical metal optical processing professional rail rings services shock sleeves suspension syringe system timing treatment variable</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">83</td>
+<td style="text-align: left;">absorbers added chemicals coatings finishes flame innovative management moisture oil release repellents retardants soil stain uv water</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">84</td>
+<td style="text-align: left;">absorbers anti articles bar bearing bearings calibrated cast components connecting conservatories consist cross differential doors doorways drive elements engineering extraction extrusion facades finger fixing food fresh gaiters gaskets gearbox guard hydraulic include including industrial industry intermediate limiters linings membrane moulds mountings movement pipes profiles protection rods roll rubber sealing shaft shock slitted steering stop struts system technical technology transmission waste water white windows zsb</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">85</td>
+<td style="text-align: left;">absorbing active adjustability adjustable advanced aftermarket assemblies columns components comprising drive electric electronics energy equipment final front half hydraulic including intermediate joints kits modules original overlay power propeller rake rear services shaft shafts solutions steering systems technology tilt torque touch wheel</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">86</td>
+<td style="text-align: left;">absorption ac anti apparel breathable coating cpu cut dirt durable dyed dyeing embossing fabric fabrics fashion fiber flame form furnishing germs home including industrial laminating lamination mesh mildew nylon olefin outdoor padded polyester pressing printing process proof pu pvc recycle recycled repellent short special spun textile textiles tricot uv vinyl water yarn yarns</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">87</td>
+<td style="text-align: left;">ac accessories arc beam billets blanks blooms building casting continuous dc degassing electrical equipment fibers furnaces gift household indoor industrial ladle machines materials minimills outdoor plants rounds sewing stationery supplies threads vacuum vd vod yarns</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">88</td>
+<td style="text-align: left;">ac automotive brushless cleaner dc gear include induction motors offers pole range shade universal vacuum</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">89</td>
+<td style="text-align: left;">ac dc freelance gear hydraulic manifolds motors power pumps remotes researcher reservoirs source units</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">90</td>
+<td style="text-align: left;">acacia almond blossom calluna chestnut eucalyptus forest heather honey lavender lemon linden mandarin mountain orange organic origins polyflora rape rosemary spanish stoechas sunflower thyme tree types vitex</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">91</td>
+<td style="text-align: left;">accelerated business consultancy freelance industrial joint performance researcher service source supply testing tires tosupport venture wheels</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">92</td>
+<td style="text-align: left;">accelerator adhesive adhesives anaerobic bottles curing cyanoacrylate dispensing dosing epoxy equipment floodlight glue lamps led linop medical methacrylate methyl packaging primer remover solutions tips uv</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">93</td>
+<td style="text-align: left;">accent accents americana bow bridal check christmas craft decorative floral gift holiday industries items lace manufacture metallic offers patrick polypropylene portfolio ribbon ribbons sale satin seasonal sheers special spring st striped supplies tulle unwired valentine velvet waterproof wedding wired wrapping</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">94</td>
+<td style="text-align: left;">accent commotions cones cookie cool cream creamy desserts drink drinks duetto energy frozen fruit fusion gelati ice iced including light moos nature's premium sandwiches sherbet sundae tea treats venice yogurt</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">95</td>
+<td style="text-align: left;">access acute aesculap anesthesia apparatus care chronic clinical closure dialysis disinfection divisions endoscopes fields frequency gloves hospital hygiene incontinence infusion injections instruments intensive intravenous invasion management market medical medicine minimal nutrition offers operates opm parental patient services solutions stoma surgical therapy treatment unit urology wound wounds</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">96</td>
+<td style="text-align: left;">access ade air architectural benchmark boards cable centre components containers control controlled data door drainage ductwork energy engineered environmental environments factory faã floor floors frame framing harvesting heat height hot hvac insulated insulation integrated management panels piping pollution pumps rainwater renewable roof roofs safety solar solutions source steel structural sustainable systems telementry timber underfloor wall walls water wire</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">97</td>
+<td style="text-align: left;">access arm articulated capacity compact equipment forklift forklifts front including industrial loaders maniaccess manihoe manilec maniloader maniscopic manitou manitransit masted mounted pallet platforms rear rotating rough scissor semi shovel stackers telescopic terrain truck trucks vertical warehouse</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">98</td>
+<td style="text-align: left;">accessibility assistance buses city coaches mini services support systems technical</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">99</td>
+<td style="text-align: left;">accessories acoustic adhesives automotive covering energy engineered fire foams industrial insulation markets metallic offers pvc range safety systems technical wind</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">100</td>
+<td style="text-align: left;">accessories acrylic appliques beaded beads clay cloisonne collars corsages crochet embroidered fancy fashion fringes garments gemstones glass hand jeans motifs natural scarves shells silk skirts tops trimmings</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>
+<p>Redo Tokenisation base on grouped_biz_code and perform pairwise_similarity business</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Tokenisation of service words</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>grouped_service_code_words <span class="ot">&lt;-</span> grouped_biz_code <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unnest_tokens</span>(word, business) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="st">"word"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(biz_code, word) <span class="sc">%&gt;%</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ungroup</span>()</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#pairwise_similarity of service words</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>closest_org_service_code <span class="ot">&lt;-</span> grouped_service_code_words <span class="sc">%&gt;%</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pairwise_similarity</span>(biz_code, word, n) <span class="sc">%&gt;%</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(similarity <span class="sc">&gt;=</span> <span class="fl">0.5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(similarity))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Build table to review business similarity (Check_closest_org_service_code). similar pair = 3887 (similar_pairs)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#To review pairwise_similarity in table format</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Check_closest_org_service_code <span class="ot">&lt;-</span> closest_org_service_code <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(grouped_biz_code <span class="sc">%&gt;%</span> <span class="fu">select</span>(biz_code, business) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">business_1 =</span> business), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"item1"</span> <span class="ot">=</span> <span class="st">"biz_code"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(grouped_biz_code <span class="sc">%&gt;%</span> <span class="fu">select</span>(biz_code, business) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">business_2 =</span> business), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"item2"</span> <span class="ot">=</span> <span class="st">"biz_code"</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>similar_pairs <span class="ot">&lt;-</span> Check_closest_org_service_code <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(item1 <span class="sc">&lt;</span> item2)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Check_closest_org_service_code, <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"Preview of similar bussiness pair with similarity value more than 0.5"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>(<span class="st">"hover"</span>, <span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">"100%"</span>, <span class="at">height =</span> <span class="st">"500px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
+<table class="lightable-paper lightable-hover table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Preview of similar bussiness pair with similarity value more than 0.5</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">item1</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">item2</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">similarity</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">business_1</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">business_2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">314</td>
+<td style="text-align: right;">313</td>
+<td style="text-align: right;">0.9860133</td>
+<td style="text-align: left;">activities assistance basis business businesses change coaching development effective efficient frameworks functions guide identification implementation improvement management methodologies ongoing operational organisational organisations performing proprietary recommendations routine serve services skills specialises strategy support tasks technology traditionally</td>
+<td style="text-align: left;">activities assistance basis business businesses change coaching development effective efficient frameworks functions guide identification implementation improvement management methodologies offers ongoing operational organisational organisations performing proprietary recommendations routine serve services skills specialises strategy support tasks technology traditionally</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">313</td>
+<td style="text-align: right;">314</td>
+<td style="text-align: right;">0.9860133</td>
+<td style="text-align: left;">activities assistance basis business businesses change coaching development effective efficient frameworks functions guide identification implementation improvement management methodologies offers ongoing operational organisational organisations performing proprietary recommendations routine serve services skills specialises strategy support tasks technology traditionally</td>
+<td style="text-align: left;">activities assistance basis business businesses change coaching development effective efficient frameworks functions guide identification implementation improvement management methodologies ongoing operational organisational organisations performing proprietary recommendations routine serve services skills specialises strategy support tasks technology traditionally</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1667</td>
+<td style="text-align: right;">1666</td>
+<td style="text-align: right;">0.9805807</td>
+<td style="text-align: left;">burger canned cod cornmeal covers crabs fillets flounder frozen groundfish halibut herring pollock range rockfish salmon shellfish sockeye sole specialises steak steaks strips tuna wide</td>
+<td style="text-align: left;">burger canned cod cornmeal covers crabs fillets flounder frozen groundfish halibut herring offering pollock range rockfish salmon shellfish sockeye sole specialises steak steaks strips tuna wide</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1666</td>
+<td style="text-align: right;">1667</td>
+<td style="text-align: right;">0.9805807</td>
+<td style="text-align: left;">burger canned cod cornmeal covers crabs fillets flounder frozen groundfish halibut herring offering pollock range rockfish salmon shellfish sockeye sole specialises steak steaks strips tuna wide</td>
+<td style="text-align: left;">burger canned cod cornmeal covers crabs fillets flounder frozen groundfish halibut herring pollock range rockfish salmon shellfish sockeye sole specialises steak steaks strips tuna wide</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1671</td>
+<td style="text-align: right;">1670</td>
+<td style="text-align: right;">0.9805807</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder frozen groundfish halibut herring king pollock rockfish salmon seafood shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder frozen grocery groundfish halibut herring king pollock rockfish salmon seafood shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1670</td>
+<td style="text-align: right;">1671</td>
+<td style="text-align: right;">0.9805807</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder frozen grocery groundfish halibut herring king pollock rockfish salmon seafood shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder frozen groundfish halibut herring king pollock rockfish salmon seafood shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1541</td>
+<td style="text-align: right;">1540</td>
+<td style="text-align: right;">0.9797959</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads including marine oils packing processing removing salting scales seafood shellfish shucking smoking soup</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads including marine oils packing processing removing salting scales seafood seafoods shellfish shucking smoking soup</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1540</td>
+<td style="text-align: right;">1541</td>
+<td style="text-align: right;">0.9797959</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads including marine oils packing processing removing salting scales seafood seafoods shellfish shucking smoking soup</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads including marine oils packing processing removing salting scales seafood shellfish shucking smoking soup</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1263</td>
+<td style="text-align: right;">1262</td>
+<td style="text-align: right;">0.9759001</td>
+<td style="text-align: left;">bakery beverages cream dairy dressings dry food frozen fruits groceries ice kitchen meat paper plates salad sanitation solutions vegetables ware</td>
+<td style="text-align: left;">bakery beverages cream dairy dressings dry food frozen fruits groceries ice kitchen meat offers paper plates salad sanitation solutions vegetables ware</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1262</td>
+<td style="text-align: right;">1263</td>
+<td style="text-align: right;">0.9759001</td>
+<td style="text-align: left;">bakery beverages cream dairy dressings dry food frozen fruits groceries ice kitchen meat offers paper plates salad sanitation solutions vegetables ware</td>
+<td style="text-align: left;">bakery beverages cream dairy dressings dry food frozen fruits groceries ice kitchen meat paper plates salad sanitation solutions vegetables ware</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1544</td>
+<td style="text-align: right;">1543</td>
+<td style="text-align: right;">0.9746794</td>
+<td style="text-align: left;">bones entrails eviscerating fats fins fish fresh frozen heads manufacturing marine oils packing processing removing scales seafood shellfish shucking specialises</td>
+<td style="text-align: left;">bones entrails eviscerating fats fins fish fresh frozen heads manufacturing marine oils packing processing removing scales seafood shellfish shucking</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1543</td>
+<td style="text-align: right;">1544</td>
+<td style="text-align: right;">0.9746794</td>
+<td style="text-align: left;">bones entrails eviscerating fats fins fish fresh frozen heads manufacturing marine oils packing processing removing scales seafood shellfish shucking</td>
+<td style="text-align: left;">bones entrails eviscerating fats fins fish fresh frozen heads manufacturing marine oils packing processing removing scales seafood shellfish shucking specialises</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">424</td>
+<td style="text-align: right;">423</td>
+<td style="text-align: right;">0.9701425</td>
+<td style="text-align: left;">adhesives animal caulking cements compounds glues household industrial linoleum materials plastics rubber sealants synthetic tile vegetable</td>
+<td style="text-align: left;">adhesives animal caulking cements compounds glues household industrial linoleum manufacturing materials plastics rubber sealants synthetic tile vegetable</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">423</td>
+<td style="text-align: right;">424</td>
+<td style="text-align: right;">0.9701425</td>
+<td style="text-align: left;">adhesives animal caulking cements compounds glues household industrial linoleum manufacturing materials plastics rubber sealants synthetic tile vegetable</td>
+<td style="text-align: left;">adhesives animal caulking cements compounds glues household industrial linoleum materials plastics rubber sealants synthetic tile vegetable</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">998</td>
+<td style="text-align: right;">997</td>
+<td style="text-align: right;">0.9660918</td>
+<td style="text-align: left;">aquatic dried fillets fish fishmeals marinated marine preserved salted sardines seafoods smoked sour sweet</td>
+<td style="text-align: left;">aquatic dried fillets fish fishmeals marinated marine preserved produces salted sardines seafoods smoked sour sweet</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">997</td>
+<td style="text-align: right;">998</td>
+<td style="text-align: right;">0.9660918</td>
+<td style="text-align: left;">aquatic dried fillets fish fishmeals marinated marine preserved produces salted sardines seafoods smoked sour sweet</td>
+<td style="text-align: left;">aquatic dried fillets fish fishmeals marinated marine preserved salted sardines seafoods smoked sour sweet</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">727</td>
+<td style="text-align: right;">726</td>
+<td style="text-align: right;">0.9657040</td>
+<td style="text-align: left;">alum bags baking bar beans beef bottle bowls bread cakes canned cereal cheese chocolate cleaning coffee condiments cookie cups dessert detergents disposables dough dressings dry eggs equipment film fish foils food french fresh fries frozen fruit glazes hashbrowns hors hot juice lamb lids milk mixes napkins oeuvres oils olives pancake pans pasta pastries pickles pies pizza plates pork pot potato potatoes poultry prepared produce rice salad salads sauces seafood shortening snack soda soup spices supplies supply tea tissue towels trays veal water waxes</td>
+<td style="text-align: left;">alum bags baking bar beans beef bottle bowls bread cakes canned cereal cheese chocolate cleaning coffee condiments cookie cups dessert detergents disposables dough dressings dry eggs equipment film fish foils food french fresh fries frozen fruit glazes grocery hashbrowns hors hot including juice lamb lids milk mixes napkins oeuvres offers oils olives pancake pans pasta pastries pickles pies pizza plates pork pot potato potatoes poultry prepared produce rice salad salads sauces seafood selection shortening snack soda soup spices supplies supply tea tissue towels trays veal water waxes wholesales wide</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">726</td>
+<td style="text-align: right;">727</td>
+<td style="text-align: right;">0.9657040</td>
+<td style="text-align: left;">alum bags baking bar beans beef bottle bowls bread cakes canned cereal cheese chocolate cleaning coffee condiments cookie cups dessert detergents disposables dough dressings dry eggs equipment film fish foils food french fresh fries frozen fruit glazes grocery hashbrowns hors hot including juice lamb lids milk mixes napkins oeuvres offers oils olives pancake pans pasta pastries pickles pies pizza plates pork pot potato potatoes poultry prepared produce rice salad salads sauces seafood selection shortening snack soda soup spices supplies supply tea tissue towels trays veal water waxes wholesales wide</td>
+<td style="text-align: left;">alum bags baking bar beans beef bottle bowls bread cakes canned cereal cheese chocolate cleaning coffee condiments cookie cups dessert detergents disposables dough dressings dry eggs equipment film fish foils food french fresh fries frozen fruit glazes hashbrowns hors hot juice lamb lids milk mixes napkins oeuvres oils olives pancake pans pasta pastries pickles pies pizza plates pork pot potato potatoes poultry prepared produce rice salad salads sauces seafood shortening snack soda soup spices supplies supply tea tissue towels trays veal water waxes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1540</td>
+<td style="text-align: right;">318</td>
+<td style="text-align: right;">0.9622504</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads including marine oils packing processing removing salting scales seafood seafoods shellfish shucking smoking soup</td>
+<td style="text-align: left;">activities bones canning drying entrails eviscerating fats fins fish freezing fresh heads including involved marine oils packing processing removing salting scales seafood seafoods shellfish shucking smoking soup</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">318</td>
+<td style="text-align: right;">1540</td>
+<td style="text-align: right;">0.9622504</td>
+<td style="text-align: left;">activities bones canning drying entrails eviscerating fats fins fish freezing fresh heads including involved marine oils packing processing removing salting scales seafood seafoods shellfish shucking smoking soup</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads including marine oils packing processing removing salting scales seafood seafoods shellfish shucking smoking soup</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1001</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">0.9607689</td>
+<td style="text-align: left;">aquatic drying fish fresh frozen prepared salting seafood shellfish smoking soup surimi</td>
+<td style="text-align: left;">aquatic drying fish fresh frozen prepared salting seafood shellfish smoking soup specialises surimi</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">1001</td>
+<td style="text-align: right;">0.9607689</td>
+<td style="text-align: left;">aquatic drying fish fresh frozen prepared salting seafood shellfish smoking soup specialises surimi</td>
+<td style="text-align: left;">aquatic drying fish fresh frozen prepared salting seafood shellfish smoking soup surimi</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1673</td>
+<td style="text-align: right;">1671</td>
+<td style="text-align: right;">0.9591663</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets flounder frozen groundfish halibut herring king pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder frozen groundfish halibut herring king pollock rockfish salmon seafood shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1671</td>
+<td style="text-align: right;">1673</td>
+<td style="text-align: right;">0.9591663</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder frozen groundfish halibut herring king pollock rockfish salmon seafood shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets flounder frozen groundfish halibut herring king pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1542</td>
+<td style="text-align: right;">1541</td>
+<td style="text-align: right;">0.9574271</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads marine oils packing processing removing salting scales seafood shellfish shucking smoking</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads including marine oils packing processing removing salting scales seafood shellfish shucking smoking soup</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1541</td>
+<td style="text-align: right;">1542</td>
+<td style="text-align: right;">0.9574271</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads including marine oils packing processing removing salting scales seafood shellfish shucking smoking soup</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads marine oils packing processing removing salting scales seafood shellfish shucking smoking</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1674</td>
+<td style="text-align: right;">1673</td>
+<td style="text-align: right;">0.9555331</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fillets flounder frozen groundfish halibut herring pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets flounder frozen groundfish halibut herring king pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1673</td>
+<td style="text-align: right;">1674</td>
+<td style="text-align: right;">0.9555331</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets flounder frozen groundfish halibut herring king pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fillets flounder frozen groundfish halibut herring pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2262</td>
+<td style="text-align: right;">2261</td>
+<td style="text-align: right;">0.9534626</td>
+<td style="text-align: left;">crustaceans distribution fillets fish fresh frozen line molluscs seafoods shellfish</td>
+<td style="text-align: left;">crustaceans distribution fillets fish fresh frozen involved line molluscs seafoods shellfish</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2261</td>
+<td style="text-align: right;">2262</td>
+<td style="text-align: right;">0.9534626</td>
+<td style="text-align: left;">crustaceans distribution fillets fish fresh frozen involved line molluscs seafoods shellfish</td>
+<td style="text-align: left;">crustaceans distribution fillets fish fresh frozen line molluscs seafoods shellfish</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1352</td>
+<td style="text-align: right;">1351</td>
+<td style="text-align: right;">0.9511897</td>
+<td style="text-align: left;">bass catfish clams crabs crustaceans fish lobster mollusks oysters salmon sea shellfish shrimp squid sword tilapia trout tuna vegetables</td>
+<td style="text-align: left;">bass catfish clams crabs crustaceans fish lobster mollusks oysters primarily salmon sea sells shellfish shrimp squid sword tilapia trout tuna vegetables</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1351</td>
+<td style="text-align: right;">1352</td>
+<td style="text-align: right;">0.9511897</td>
+<td style="text-align: left;">bass catfish clams crabs crustaceans fish lobster mollusks oysters primarily salmon sea sells shellfish shrimp squid sword tilapia trout tuna vegetables</td>
+<td style="text-align: left;">bass catfish clams crabs crustaceans fish lobster mollusks oysters salmon sea shellfish shrimp squid sword tilapia trout tuna vegetables</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1541</td>
+<td style="text-align: right;">318</td>
+<td style="text-align: right;">0.9428090</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads including marine oils packing processing removing salting scales seafood shellfish shucking smoking soup</td>
+<td style="text-align: left;">activities bones canning drying entrails eviscerating fats fins fish freezing fresh heads including involved marine oils packing processing removing salting scales seafood seafoods shellfish shucking smoking soup</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">318</td>
+<td style="text-align: right;">1541</td>
+<td style="text-align: right;">0.9428090</td>
+<td style="text-align: left;">activities bones canning drying entrails eviscerating fats fins fish freezing fresh heads including involved marine oils packing processing removing salting scales seafood seafoods shellfish shucking smoking soup</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads including marine oils packing processing removing salting scales seafood shellfish shucking smoking soup</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1386</td>
+<td style="text-align: right;">1385</td>
+<td style="text-align: right;">0.9413574</td>
+<td style="text-align: left;">beauty beverages breads care cleaning consumer cosmetics detergents disposable drugs food frozen fruits grocery household junk laundry meat nappies personal poultry prescription processed seafood vegetables</td>
+<td style="text-align: left;">beauty beverages breads care cleaning consumer cosmetics detergents disposable drugs food foods frozen fruits household include junk laundry meat nappies personal poultry prescription processed seafood vegetables</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1385</td>
+<td style="text-align: right;">1386</td>
+<td style="text-align: right;">0.9413574</td>
+<td style="text-align: left;">beauty beverages breads care cleaning consumer cosmetics detergents disposable drugs food foods frozen fruits household include junk laundry meat nappies personal poultry prescription processed seafood vegetables</td>
+<td style="text-align: left;">beauty beverages breads care cleaning consumer cosmetics detergents disposable drugs food frozen fruits grocery household junk laundry meat nappies personal poultry prescription processed seafood vegetables</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1673</td>
+<td style="text-align: right;">1670</td>
+<td style="text-align: right;">0.9405399</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets flounder frozen groundfish halibut herring king pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder frozen grocery groundfish halibut herring king pollock rockfish salmon seafood shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1670</td>
+<td style="text-align: right;">1673</td>
+<td style="text-align: right;">0.9405399</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder frozen grocery groundfish halibut herring king pollock rockfish salmon seafood shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets flounder frozen groundfish halibut herring king pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1723</td>
+<td style="text-align: right;">1722</td>
+<td style="text-align: right;">0.9393364</td>
+<td style="text-align: left;">cakes chowders cooked crabcakes fish fishcakes fresh frozen preparations raw seafood seafoods shrimp soups stews</td>
+<td style="text-align: left;">cakes chowders cooked crabcakes fish fishcakes fresh frozen include preparations preparing raw seafood seafoods shrimp soups stews</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1722</td>
+<td style="text-align: right;">1723</td>
+<td style="text-align: right;">0.9393364</td>
+<td style="text-align: left;">cakes chowders cooked crabcakes fish fishcakes fresh frozen include preparations preparing raw seafood seafoods shrimp soups stews</td>
+<td style="text-align: left;">cakes chowders cooked crabcakes fish fishcakes fresh frozen preparations raw seafood seafoods shrimp soups stews</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1542</td>
+<td style="text-align: right;">1540</td>
+<td style="text-align: right;">0.9380832</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads marine oils packing processing removing salting scales seafood shellfish shucking smoking</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads including marine oils packing processing removing salting scales seafood seafoods shellfish shucking smoking soup</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1540</td>
+<td style="text-align: right;">1542</td>
+<td style="text-align: right;">0.9380832</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads including marine oils packing processing removing salting scales seafood seafoods shellfish shucking smoking soup</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads marine oils packing processing removing salting scales seafood shellfish shucking smoking</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">989</td>
+<td style="text-align: right;">988</td>
+<td style="text-align: right;">0.9354143</td>
+<td style="text-align: left;">aquatic canned cured fish fresh frozen seafood</td>
+<td style="text-align: left;">aquatic canned cured fish fresh frozen furniture seafood</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">988</td>
+<td style="text-align: right;">989</td>
+<td style="text-align: right;">0.9354143</td>
+<td style="text-align: left;">aquatic canned cured fish fresh frozen furniture seafood</td>
+<td style="text-align: left;">aquatic canned cured fish fresh frozen seafood</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1672</td>
+<td style="text-align: right;">1668</td>
+<td style="text-align: right;">0.9291642</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets flounder frozen groundfish halibut herring king ocean offers pacific perch pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder food frozen groundfish halibut herring king ocean pacific perch pollock rockfish salmon sea shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1668</td>
+<td style="text-align: right;">1672</td>
+<td style="text-align: right;">0.9291642</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder food frozen groundfish halibut herring king ocean pacific perch pollock rockfish salmon sea shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets flounder frozen groundfish halibut herring king ocean offers pacific perch pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1673</td>
+<td style="text-align: right;">1672</td>
+<td style="text-align: right;">0.9229582</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets flounder frozen groundfish halibut herring king pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets flounder frozen groundfish halibut herring king ocean offers pacific perch pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1672</td>
+<td style="text-align: right;">1673</td>
+<td style="text-align: right;">0.9229582</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets flounder frozen groundfish halibut herring king ocean offers pacific perch pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets flounder frozen groundfish halibut herring king pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1542</td>
+<td style="text-align: right;">1539</td>
+<td style="text-align: right;">0.9198662</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads marine oils packing processing removing salting scales seafood shellfish shucking smoking</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh gathering heads marine oils packaging packing preparation processing removing salting scales seafood seafoods shellfish shucking smoking</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1539</td>
+<td style="text-align: right;">1542</td>
+<td style="text-align: right;">0.9198662</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh gathering heads marine oils packaging packing preparation processing removing salting scales seafood seafoods shellfish shucking smoking</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads marine oils packing processing removing salting scales seafood shellfish shucking smoking</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2200</td>
+<td style="text-align: right;">827</td>
+<td style="text-align: right;">0.9176629</td>
+<td style="text-align: left;">controlled cured custom cut fresh frozen lamb meat meats pork portion sausage seafood smoked specialty venison</td>
+<td style="text-align: left;">animal controlled cured custom cut fresh frozen lamb meat meats pork portion processing sausage seafood slaughtering smoked specialty venison</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">827</td>
+<td style="text-align: right;">2200</td>
+<td style="text-align: right;">0.9176629</td>
+<td style="text-align: left;">animal controlled cured custom cut fresh frozen lamb meat meats pork portion processing sausage seafood slaughtering smoked specialty venison</td>
+<td style="text-align: left;">controlled cured custom cut fresh frozen lamb meat meats pork portion sausage seafood smoked specialty venison</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1570</td>
+<td style="text-align: right;">1569</td>
+<td style="text-align: right;">0.9165151</td>
+<td style="text-align: left;">bottom catfish clams cod crab exotics farmed fish fishes flounder halibuts oysters pollock rockfish salmon shellfish shrimp sole tilapia tuna whiting</td>
+<td style="text-align: left;">bottom catfish clams cod crab cured exotics farmed fish fishes flounder fresh frozen halibuts oysters pollock rockfish salmon seafoods shellfish shrimp sole tilapia tuna whiting</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1569</td>
+<td style="text-align: right;">1570</td>
+<td style="text-align: right;">0.9165151</td>
+<td style="text-align: left;">bottom catfish clams cod crab cured exotics farmed fish fishes flounder fresh frozen halibuts oysters pollock rockfish salmon seafoods shellfish shrimp sole tilapia tuna whiting</td>
+<td style="text-align: left;">bottom catfish clams cod crab exotics farmed fish fishes flounder halibuts oysters pollock rockfish salmon shellfish shrimp sole tilapia tuna whiting</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1674</td>
+<td style="text-align: right;">1667</td>
+<td style="text-align: right;">0.9165151</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fillets flounder frozen groundfish halibut herring pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal covers crabs fillets flounder frozen groundfish halibut herring pollock range rockfish salmon shellfish sockeye sole specialises steak steaks strips tuna wide</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1674</td>
+<td style="text-align: right;">1671</td>
+<td style="text-align: right;">0.9165151</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fillets flounder frozen groundfish halibut herring pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder frozen groundfish halibut herring king pollock rockfish salmon seafood shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1667</td>
+<td style="text-align: right;">1674</td>
+<td style="text-align: right;">0.9165151</td>
+<td style="text-align: left;">burger canned cod cornmeal covers crabs fillets flounder frozen groundfish halibut herring pollock range rockfish salmon shellfish sockeye sole specialises steak steaks strips tuna wide</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fillets flounder frozen groundfish halibut herring pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1671</td>
+<td style="text-align: right;">1674</td>
+<td style="text-align: right;">0.9165151</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder frozen groundfish halibut herring king pollock rockfish salmon seafood shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fillets flounder frozen groundfish halibut herring pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1539</td>
+<td style="text-align: right;">1538</td>
+<td style="text-align: right;">0.9158109</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh gathering heads marine oils packaging packing preparation processing removing salting scales seafood seafoods shellfish shucking smoking</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing freight fresh gathering heads logistics marine oils packaging packing preparation processing removing salting scales seafood seafoods services shellfish shucking smoking transportation trucking</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1538</td>
+<td style="text-align: right;">1539</td>
+<td style="text-align: right;">0.9158109</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing freight fresh gathering heads logistics marine oils packaging packing preparation processing removing salting scales seafood seafoods services shellfish shucking smoking transportation trucking</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh gathering heads marine oils packaging packing preparation processing removing salting scales seafood seafoods shellfish shucking smoking</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1669</td>
+<td style="text-align: right;">1668</td>
+<td style="text-align: right;">0.9153857</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder freshwater frozen groundfish halibut herring king live ocean ornamental pacific perch pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder food frozen groundfish halibut herring king ocean pacific perch pollock rockfish salmon sea shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1668</td>
+<td style="text-align: right;">1669</td>
+<td style="text-align: right;">0.9153857</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder food frozen groundfish halibut herring king ocean pacific perch pollock rockfish salmon sea shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder freshwater frozen groundfish halibut herring king live ocean ornamental pacific perch pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1672</td>
+<td style="text-align: right;">1669</td>
+<td style="text-align: right;">0.9135469</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets flounder frozen groundfish halibut herring king ocean offers pacific perch pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder freshwater frozen groundfish halibut herring king live ocean ornamental pacific perch pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1669</td>
+<td style="text-align: right;">1672</td>
+<td style="text-align: right;">0.9135469</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder freshwater frozen groundfish halibut herring king live ocean ornamental pacific perch pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets flounder frozen groundfish halibut herring king ocean offers pacific perch pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">849</td>
+<td style="text-align: right;">691</td>
+<td style="text-align: right;">0.9128709</td>
+<td style="text-align: left;">anoraks backpacks bags boxers casual dress hats include licensed logoed outerwear polo rugby shirts shorts slacks sportswear sweaters sweatshirts turtlenecks</td>
+<td style="text-align: left;">allied anoraks backpacks bags boxers casual clothing dress garments hats include licensed logoed outerwear polo rugby shirts shorts slacks sportswear sweaters sweatshirts trousers turtlenecks</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">691</td>
+<td style="text-align: right;">849</td>
+<td style="text-align: right;">0.9128709</td>
+<td style="text-align: left;">allied anoraks backpacks bags boxers casual clothing dress garments hats include licensed logoed outerwear polo rugby shirts shorts slacks sportswear sweaters sweatshirts trousers turtlenecks</td>
+<td style="text-align: left;">anoraks backpacks bags boxers casual dress hats include licensed logoed outerwear polo rugby shirts shorts slacks sportswear sweaters sweatshirts turtlenecks</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">891</td>
+<td style="text-align: right;">886</td>
+<td style="text-align: right;">0.9128709</td>
+<td style="text-align: left;">apparel leather machinery production textile</td>
+<td style="text-align: left;">apparel equipment leather machinery production textile</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">886</td>
+<td style="text-align: right;">891</td>
+<td style="text-align: right;">0.9128709</td>
+<td style="text-align: left;">apparel equipment leather machinery production textile</td>
+<td style="text-align: left;">apparel leather machinery production textile</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1040</td>
+<td style="text-align: right;">1039</td>
+<td style="text-align: right;">0.9128709</td>
+<td style="text-align: left;">arranging carriers freight shippers transportation</td>
+<td style="text-align: left;">arranging carriers freight shippers specialises transportation</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1039</td>
+<td style="text-align: right;">1040</td>
+<td style="text-align: right;">0.9128709</td>
+<td style="text-align: left;">arranging carriers freight shippers specialises transportation</td>
+<td style="text-align: left;">arranging carriers freight shippers transportation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1722</td>
+<td style="text-align: right;">1721</td>
+<td style="text-align: right;">0.9095086</td>
+<td style="text-align: left;">cakes chowders cooked crabcakes fish fishcakes fresh frozen include preparations preparing raw seafood seafoods shrimp soups stews</td>
+<td style="text-align: left;">cakes chowders cooked crab fish fishcakes fresh frozen preparations preparing raw seafood seafoods shrimp soups stews</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1721</td>
+<td style="text-align: right;">1722</td>
+<td style="text-align: right;">0.9095086</td>
+<td style="text-align: left;">cakes chowders cooked crab fish fishcakes fresh frozen preparations preparing raw seafood seafoods shrimp soups stews</td>
+<td style="text-align: left;">cakes chowders cooked crabcakes fish fishcakes fresh frozen include preparations preparing raw seafood seafoods shrimp soups stews</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1354</td>
+<td style="text-align: right;">1353</td>
+<td style="text-align: right;">0.9088933</td>
+<td style="text-align: left;">bass clams crabs crustaceans fish lobster mollusks offers oysters salmon sea seafood shellfish shrimp squid sword trout tuna vegetables</td>
+<td style="text-align: left;">bass clams crabs crustaceans fish lobster mollusks offers oysters purchase sale salmon sea seafood shellfish shrimp specializes squid sword trade trout tuna vegetables</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1353</td>
+<td style="text-align: right;">1354</td>
+<td style="text-align: right;">0.9088933</td>
+<td style="text-align: left;">bass clams crabs crustaceans fish lobster mollusks offers oysters purchase sale salmon sea seafood shellfish shrimp specializes squid sword trade trout tuna vegetables</td>
+<td style="text-align: left;">bass clams crabs crustaceans fish lobster mollusks offers oysters salmon sea seafood shellfish shrimp squid sword trout tuna vegetables</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">149</td>
+<td style="text-align: right;">148</td>
+<td style="text-align: right;">0.9045340</td>
+<td style="text-align: left;">accessories apparel clothing men's shirts specialty sweaters tailored women's</td>
+<td style="text-align: left;">accessories apparel clothing items men's shirts specialty sweaters tailored textile women's</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">148</td>
+<td style="text-align: right;">149</td>
+<td style="text-align: right;">0.9045340</td>
+<td style="text-align: left;">accessories apparel clothing items men's shirts specialty sweaters tailored textile women's</td>
+<td style="text-align: left;">accessories apparel clothing men's shirts specialty sweaters tailored women's</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">930</td>
+<td style="text-align: right;">929</td>
+<td style="text-align: right;">0.9045340</td>
+<td style="text-align: left;">appliances computers consumer electronic household line single televisions type</td>
+<td style="text-align: left;">appliances computers consumer distribution electronic household line single specialising televisions type</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">929</td>
+<td style="text-align: right;">930</td>
+<td style="text-align: right;">0.9045340</td>
+<td style="text-align: left;">appliances computers consumer distribution electronic household line single specialising televisions type</td>
+<td style="text-align: left;">appliances computers consumer electronic household line single televisions type</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1723</td>
+<td style="text-align: right;">1721</td>
+<td style="text-align: right;">0.9036961</td>
+<td style="text-align: left;">cakes chowders cooked crabcakes fish fishcakes fresh frozen preparations raw seafood seafoods shrimp soups stews</td>
+<td style="text-align: left;">cakes chowders cooked crab fish fishcakes fresh frozen preparations preparing raw seafood seafoods shrimp soups stews</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1721</td>
+<td style="text-align: right;">1723</td>
+<td style="text-align: right;">0.9036961</td>
+<td style="text-align: left;">cakes chowders cooked crab fish fishcakes fresh frozen preparations preparing raw seafood seafoods shrimp soups stews</td>
+<td style="text-align: left;">cakes chowders cooked crabcakes fish fishcakes fresh frozen preparations raw seafood seafoods shrimp soups stews</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1542</td>
+<td style="text-align: right;">318</td>
+<td style="text-align: right;">0.9026709</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads marine oils packing processing removing salting scales seafood shellfish shucking smoking</td>
+<td style="text-align: left;">activities bones canning drying entrails eviscerating fats fins fish freezing fresh heads including involved marine oils packing processing removing salting scales seafood seafoods shellfish shucking smoking soup</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">318</td>
+<td style="text-align: right;">1542</td>
+<td style="text-align: right;">0.9026709</td>
+<td style="text-align: left;">activities bones canning drying entrails eviscerating fats fins fish freezing fresh heads including involved marine oils packing processing removing salting scales seafood seafoods shellfish shucking smoking soup</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads marine oils packing processing removing salting scales seafood shellfish shucking smoking</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">124</td>
+<td style="text-align: right;">0.9021342</td>
+<td style="text-align: left;">accessories alterations basic distribution fabric fabricating fabrics fibers finishing hair hemming knitting lengthening letting notions offers piece preparation services shortening specialises taking thread weaving wholesale yarns</td>
+<td style="text-align: left;">accessories alterations basic distribution encompass fabric fabrication fabrics finishing hemming knitting lengthening letting notions offers piece preparation services shortening specialises taking thread weaving wholesale yarns</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">0.9021342</td>
+<td style="text-align: left;">accessories alterations basic distribution encompass fabric fabrication fabrics finishing hemming knitting lengthening letting notions offers piece preparation services shortening specialises taking thread weaving wholesale yarns</td>
+<td style="text-align: left;">accessories alterations basic distribution fabric fabricating fabrics fibers finishing hair hemming knitting lengthening letting notions offers piece preparation services shortening specialises taking thread weaving wholesale yarns</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1540</td>
+<td style="text-align: right;">1539</td>
+<td style="text-align: right;">0.9021342</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads including marine oils packing processing removing salting scales seafood seafoods shellfish shucking smoking soup</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh gathering heads marine oils packaging packing preparation processing removing salting scales seafood seafoods shellfish shucking smoking</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1539</td>
+<td style="text-align: right;">1540</td>
+<td style="text-align: right;">0.9021342</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh gathering heads marine oils packaging packing preparation processing removing salting scales seafood seafoods shellfish shucking smoking</td>
+<td style="text-align: left;">bones canning drying entrails eviscerating fats fins fish freezing fresh heads including marine oils packing processing removing salting scales seafood seafoods shellfish shucking smoking soup</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">127</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">0.8996469</td>
+<td style="text-align: left;">accessories alterations basic fabric fabricating fabrics fiber fibers finishing hair hemming knitting lengthening letting notions piece preparation services shortening taking thread weaving yarns</td>
+<td style="text-align: left;">accessories alterations basic distribution fabric fabricating fabrics fibers finishing hair hemming knitting lengthening letting notions offers piece preparation services shortening specialises taking thread weaving wholesale yarns</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">127</td>
+<td style="text-align: right;">0.8996469</td>
+<td style="text-align: left;">accessories alterations basic distribution fabric fabricating fabrics fibers finishing hair hemming knitting lengthening letting notions offers piece preparation services shortening specialises taking thread weaving wholesale yarns</td>
+<td style="text-align: left;">accessories alterations basic fabric fabricating fabrics fiber fibers finishing hair hemming knitting lengthening letting notions piece preparation services shortening taking thread weaving yarns</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1674</td>
+<td style="text-align: right;">1666</td>
+<td style="text-align: right;">0.8987170</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fillets flounder frozen groundfish halibut herring pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal covers crabs fillets flounder frozen groundfish halibut herring offering pollock range rockfish salmon shellfish sockeye sole specialises steak steaks strips tuna wide</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1674</td>
+<td style="text-align: right;">1670</td>
+<td style="text-align: right;">0.8987170</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fillets flounder frozen groundfish halibut herring pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder frozen grocery groundfish halibut herring king pollock rockfish salmon seafood shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1666</td>
+<td style="text-align: right;">1674</td>
+<td style="text-align: right;">0.8987170</td>
+<td style="text-align: left;">burger canned cod cornmeal covers crabs fillets flounder frozen groundfish halibut herring offering pollock range rockfish salmon shellfish sockeye sole specialises steak steaks strips tuna wide</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fillets flounder frozen groundfish halibut herring pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1670</td>
+<td style="text-align: right;">1674</td>
+<td style="text-align: right;">0.8987170</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder frozen grocery groundfish halibut herring king pollock rockfish salmon seafood shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fillets flounder frozen groundfish halibut herring pollock rockfish salmon shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1354</td>
+<td style="text-align: right;">1352</td>
+<td style="text-align: right;">0.8947368</td>
+<td style="text-align: left;">bass clams crabs crustaceans fish lobster mollusks offers oysters salmon sea seafood shellfish shrimp squid sword trout tuna vegetables</td>
+<td style="text-align: left;">bass catfish clams crabs crustaceans fish lobster mollusks oysters salmon sea shellfish shrimp squid sword tilapia trout tuna vegetables</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1352</td>
+<td style="text-align: right;">1354</td>
+<td style="text-align: right;">0.8947368</td>
+<td style="text-align: left;">bass catfish clams crabs crustaceans fish lobster mollusks oysters salmon sea shellfish shrimp squid sword tilapia trout tuna vegetables</td>
+<td style="text-align: left;">bass clams crabs crustaceans fish lobster mollusks offers oysters salmon sea seafood shellfish shrimp squid sword trout tuna vegetables</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">842</td>
+<td style="text-align: right;">841</td>
+<td style="text-align: right;">0.8944272</td>
+<td style="text-align: left;">animals farm feeds prepared supplies</td>
+<td style="text-align: left;">animals farm feeds prepared</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">841</td>
+<td style="text-align: right;">842</td>
+<td style="text-align: right;">0.8944272</td>
+<td style="text-align: left;">animals farm feeds prepared</td>
+<td style="text-align: left;">animals farm feeds prepared supplies</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1675</td>
+<td style="text-align: right;">1671</td>
+<td style="text-align: right;">0.8944272</td>
+<td style="text-align: left;">burger canned cornmeal crabs fillets fish flounder frozen groundfish halibut herring pollock salmon seafood shellfish sockeye steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder frozen groundfish halibut herring king pollock rockfish salmon seafood shellfish sockeye sole steak steaks strips tuna</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1671</td>
+<td style="text-align: right;">1675</td>
+<td style="text-align: right;">0.8944272</td>
+<td style="text-align: left;">burger canned cod cornmeal crabs fancy fillets fish flounder frozen groundfish halibut herring king pollock rockfish salmon seafood shellfish sockeye sole steak steaks strips tuna</td>
+<td style="text-align: left;">burger canned cornmeal crabs fillets fish flounder frozen groundfish halibut herring pollock salmon seafood shellfish sockeye steak steaks strips tuna</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1993</td>
+<td style="text-align: right;">1992</td>
+<td style="text-align: right;">0.8944272</td>
+<td style="text-align: left;">clams crabs lobsters mussels oysters sea shrimp urchins</td>
+<td style="text-align: left;">clams crabs fishes lobsters marine mussels oysters sea shrimp urchins</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1992</td>
+<td style="text-align: right;">1993</td>
+<td style="text-align: right;">0.8944272</td>
+<td style="text-align: left;">clams crabs fishes lobsters marine mussels oysters sea shrimp urchins</td>
+<td style="text-align: left;">clams crabs lobsters mussels oysters sea shrimp urchins</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>
+</section>
+<section id="regroup-and-update-business-base-on-similar_pairs-business" class="level2">
+<h2 class="anchored" data-anchor-id="regroup-and-update-business-base-on-similar_pairs-business">Regroup and update business base on similar_pairs (business)</h2>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library("quanteda")</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># data_corpus_sotu &lt;- readRDS(url("https://quanteda.org/data/data_corpus_sotu.rds"))</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dfmat_sotu &lt;- corpus_subset(data_corpus_sotu, Date &gt; as.Date("1980-01-01")) |&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     tokens(remove_punct = TRUE) |&gt;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     tokens_wordstem(language = "en") |&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     tokens_remove(stopwords("en")) |&gt;</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     dfm()</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># dfmat_sotu &lt;- dfm_trim(dfmat_sotu, min_termfreq = 5, min_docfreq = 3)</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># tstat_sim &lt;- textstat_simil(dfmat_sotu, dfmat_sotu[, c("fair", "health", "terror")],</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     method = "cosine", margin = "features")</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># lapply(as.list(tstat_sim), head, 10)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an igraph object from the similar_pairs data frame</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>graph <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(similar_pairs, <span class="at">directed =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the connected components</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>components <span class="ot">&lt;-</span> <span class="fu">components</span>(graph)<span class="sc">$</span>membership</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mapping of items to their corresponding component</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>item_component_mapping <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">item =</span> <span class="fu">as.integer</span>(<span class="fu">V</span>(graph)<span class="sc">$</span>name), <span class="at">component =</span> components)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the item_component_mapping with org_id_code</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>simplified_grouped_service_code <span class="ot">&lt;-</span> org_id_code <span class="sc">%&gt;%</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(item_component_mapping, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"biz_code"</span> <span class="ot">=</span> <span class="st">"item"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">simplified_biz_code =</span> component) <span class="sc">%&gt;%</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>component) <span class="sc">%&gt;%</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(simplified_biz_code, business)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -355,30 +2032,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # Create the graph object</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mc3_graph &lt;- tbl_graph(nodes = mc3_nodes1, edges = mc3_edges, directed = FALSE)</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># # Convert the graph to an igraph object</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># mc3_igraph &lt;- as.igraph(mc3_graph)</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># # Perform community detection using the Girvan-Newman algorithm</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># gn_communities &lt;- edge.betweenness.community(mc3_igraph)</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># # Add community membership as a vertex attribute</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># V(mc3_graph)$community &lt;- membership(gn_communities)</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># # Create the visNetwork graph object</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># vis_graph &lt;- toVisNetworkData(mc3_graph)</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># # Set the community membership as a color attribute for nodes</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># vis_graph$nodes$color &lt;- V(mc3_graph)$community</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co"># # Plot the graph with communities</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co"># visNetwork(nodes = vis_graph$nodes, edges = vis_graph$edges) %&gt;%</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co">#   visIgraphLayout() %&gt;%</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co">#   visOptions(highlightNearest = TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # Create the graph object</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mc3_graph &lt;- tbl_graph(nodes = mc3_nodes1, edges = mc3_edges, directed = FALSE)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># # Convert the graph to an igraph object</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># mc3_igraph &lt;- as.igraph(mc3_graph)</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># # Perform community detection using the Girvan-Newman algorithm</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># gn_communities &lt;- edge.betweenness.community(mc3_igraph)</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># # Add community membership as a vertex attribute</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># V(mc3_graph)$community &lt;- membership(gn_communities)</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co"># # Create the visNetwork graph object</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># vis_graph &lt;- toVisNetworkData(mc3_graph)</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co"># # Set the community membership as a color attribute for nodes</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co"># vis_graph$nodes$color &lt;- V(mc3_graph)$community</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># # Plot the graph with communities</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co"># visNetwork(nodes = vis_graph$nodes, edges = vis_graph$edges) %&gt;%</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co">#   visIgraphLayout() %&gt;%</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co">#   visOptions(highlightNearest = TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
@@ -413,9 +2090,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -480,6 +2171,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
