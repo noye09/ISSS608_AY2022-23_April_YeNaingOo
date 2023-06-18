@@ -55,7 +55,7 @@ mc2_edges <- as_tibble(mc2_data$links) %>%
  
 ```
 
-Inner join with HS_code_3\_India.csv for 'HS_Name' file and convert the data type of the 'parent_hscode' column in the Parent HS code table to character. Perform an inner join with the HS code table based on the 'parent_hscode' column, filtering away any unrelated hscode.(https://connect2india.com/hs-codes-directory/hs-code-3)
+Inner join with HS_code_3_India.csv for 'HS_Name' file and convert the data type of the 'parent_hscode' column in the Parent HS code table to character. Perform an inner join with the HS code table based on the 'parent_hscode' column, filtering away any unrelated hscode.(https://connect2india.com/hs-codes-directory/hs-code-3)
 
 ```{r}
 #| output: false

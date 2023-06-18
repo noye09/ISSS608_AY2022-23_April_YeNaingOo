@@ -19,7 +19,7 @@ load libraries.
 #| code-fold: false
 pacman::p_load(jsonlite, tidygraph, ggraph, igraph,
                visNetwork, graphlayouts, ggforce, 
-               skimr, tidytext, tidyverse, widyr, kableExtra)
+               skimr, tidytext, tidyverse, widyr, kableExtra, RColorBrewer)
 ```
 
 Read MC3 data from Json file.
@@ -179,54 +179,80 @@ head(Check_closest_org_service_code, 100) %>%
   kable_paper("hover", full_width = F) %>%
   scroll_box(width = "100%", height = "500px")
 ```
-## Regroup and update business base on similar_pairs  (business)
+## Regroup connected business
+Simplified it to 102 Group of business.
+Group number 2 found to be densely connected whit 1169 business type, base one pairwise similarity of business description.
+Further classification required on Group 2.
 
 ```{r}
-# Create an igraph object from the similar_pairs data frame
+
+
+# Create an igraph object from your graph data
 graph <- graph_from_data_frame(similar_pairs, directed = FALSE)
 
-# Find the connected components
-components <- components(graph)$membership
 
-# Create a mapping of items to their corresponding component
-item_component_mapping <- data.frame(item = as.integer(V(graph)$name), component = components)
+# Find the connected components in the graph
+components <- components(graph)
 
-# Merge the item_component_mapping with org_id_code
-simplified_grouped_service_code <- org_id_code %>%
-  left_join(item_component_mapping, by = c("biz_code" = "item")) %>%
-  mutate(simplified_biz_code = component) %>%
-  select(-component) %>%
-  distinct(simplified_biz_code, business)
+# Get the membership of each node indicating its component
+membership <- components$membership
+
+
+# Count the number of nodes in each component
+component_counts <- table(membership)
+
+# Create a data frame with the component and count information
+summary_table <- data.frame(Component = 1:length(component_counts),
+                            Count = component_counts) 
+
+summary_table <- summary_table  %>%
+  rename(GroupNumber = Component, Count_business_type = Count.Freq) %>%
+  select(GroupNumber,Count_business_type )%>%
+  arrange(desc(Count_business_type))
+
+
+# Print the summary table
+head(summary_table, 200) %>%
+  kbl(caption = "Preview of similar bussiness pair with similarity value more than 0.5") %>%
+  kable_classic(full_width = F)  %>%
+  scroll_box(width = "100%", height = "300px")
 
 ```
 
-## Community grouping (work in progress)
 
+::: panel-tabset
+## Network Map without Group 2
+```{r}
+# Remove the nodes belonging to component 2
+graph_filtered <- delete.vertices(graph, V(graph)[membership == 2])
+
+# Plot 
+plot(graph_filtered,vertex.size=8, vertex.label=NA, layout = layout_with_gem, vertex.color="lightsteelblue2", main="Network Map without Group 2")
+
+```
+
+## Network Map of Group 2
 ```{r}
 
-# # Create the graph object
-# mc3_graph <- tbl_graph(nodes = mc3_nodes1, edges = mc3_edges, directed = FALSE)
-# 
-# # Convert the graph to an igraph object
-# mc3_igraph <- as.igraph(mc3_graph)
-# 
-# # Perform community detection using the Girvan-Newman algorithm
-# gn_communities <- edge.betweenness.community(mc3_igraph)
-# 
-# 
-# # Add community membership as a vertex attribute
-# V(mc3_graph)$community <- membership(gn_communities)
-# 
-# 
-# # Create the visNetwork graph object
-# vis_graph <- toVisNetworkData(mc3_graph)
-# 
-# # Set the community membership as a color attribute for nodes
-# vis_graph$nodes$color <- V(mc3_graph)$community
-# 
-# # Plot the graph with communities
-# visNetwork(nodes = vis_graph$nodes, edges = vis_graph$edges) %>%
-#   visIgraphLayout() %>%
-#   visOptions(highlightNearest = TRUE)
+# Extract the subgraph for component 2
+subgraph <- induced_subgraph(graph, V(graph)[membership == 2])
+
+# Plot
+plot(subgraph,vertex.size=8, vertex.label=NA, vertex.color="lightsteelblue2", main="Network Map of Group 2")
+
+```
+:::
+
+
+
+
+
+
+## Community grouping
+```{r}
+ceb <- cluster_edge_betweenness(subgraph) 
+
+
+plot(ceb, subgraph, vertex.size=8, vertex.label=NA, main="Exploring Community detection based on edge betweenness for Group 2") 
 
 ```
